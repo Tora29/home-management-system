@@ -6,6 +6,7 @@ services:
       dockerfile: Dockerfile
     ports:
       - "4173:4173"
+      - "5555:5555"
     environment:
       - DATABASE_URL=postgresql://postgres:password@db:5432/mydb
     depends_on:
