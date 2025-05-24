@@ -10,16 +10,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Set up SSH key
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup SSH key
         uses: webfactory/ssh-agent@v0.8.1
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Deploy to MiniPC
+      - name: Deploy via SSH
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'ENDSSH'
-            cd /home/tora29/your-project # ←ここはプロジェクトの配置パスに変更！
+            cd ~/apps/home-management-system
             git pull
+            docker compose down
             docker compose up --build -d
             docker compose exec app npx prisma migrate deploy
           ENDSSH
