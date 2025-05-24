@@ -5,10 +5,9 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "4173:4173"
     environment:
       - DATABASE_URL=postgresql://postgres:password@db:5432/mydb
-      # 必要なら NODE_ENV=production も
     depends_on:
       - db
 
