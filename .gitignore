@@ -23,4 +23,8 @@ Thumbs.db
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
-/../generated/prisma
+# Prisma
+generated/prisma
+
+# cheatsheet
+cheatsheet.md
