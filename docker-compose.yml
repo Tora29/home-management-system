@@ -1,12 +1,12 @@
-version: "3.9"
+version: '3.9'
 services:
   app:
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "4173:4173"
-      - "5555:5555"
+      - '4173:4173'
+      - '5555:5555'
     environment:
       - DATABASE_URL=postgresql://postgres:password@db:5432/mydb
     depends_on:
@@ -20,7 +20,7 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: mydb
     ports:
-      - "5432:5432"
+      - '5432:5432'
     volumes:
       - db_data:/var/lib/postgresql/data
 
