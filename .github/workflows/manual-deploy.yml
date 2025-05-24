@@ -1,33 +1,12 @@
-name: CI and Deploy to MiniPC
+name: Deploy to MiniPC
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-    outputs:
-      lint_success: ${{ steps.lint_check.outcome }}
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 24
-      - run: npm ci
-      - run: npm run format
-      - id: lint_check
-        run: npm run lint
-
   deploy:
-    needs: lint
-    if: needs.lint.result == 'success' && github.event_name != 'pull_request' # PRではdeployしない
     runs-on: [self-hosted, linux]
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
