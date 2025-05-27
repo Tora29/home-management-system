@@ -40,7 +40,6 @@ jobs:
         if: always()
         id: coverage
         run: |
-          cd frontend
           if [ -f coverage/coverage-summary.json ]; then
             COVERAGE=$(node -e "try { const data = require('./coverage/coverage-summary.json'); console.log(data.total.statements.pct || 0); } catch(e) { console.log(0); }")
             echo "coverage=$COVERAGE" >> $GITHUB_OUTPUT
