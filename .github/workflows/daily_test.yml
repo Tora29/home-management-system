@@ -18,9 +18,6 @@ jobs:
         with:
           node-version: '20'
 
-      - name: フロントエンドディレクトリに移動
-        run: cd frontend
-
       - name: Node.jsモジュール のキャッシュ
         uses: actions/cache@v3
         with:
@@ -31,12 +28,10 @@ jobs:
 
       - name: 依存関係のインストール
         run: |
-          cd frontend
           npm install
 
       - name: テスト実行後カバレッジを生成
         run: |
-          cd frontend
           npm run test:unit -- --coverage
         continue-on-error: true
         id: test
