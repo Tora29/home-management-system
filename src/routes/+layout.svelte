@@ -6,8 +6,6 @@
 	let { children } = $props();
 </script>
 
-{@render children()}
-
 <div class="flex h-screen flex-col">
 	<div class="flex-shrink-0">
 		<Appbar />

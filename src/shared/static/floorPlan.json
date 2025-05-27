@@ -1,0 +1,103 @@
+{
+	"width": 238,
+	"height": 455,
+	"viewBox": "0 0 238 455",
+	"rooms": [
+		{
+			"id": "bathroom_changing",
+			"name": "脱衣所",
+			"type": "path",
+			"coordinates": "M50.8547 51V0H119V111H0V51H50.8547Z",
+			"style": {
+				"fill": "#D9D9D9"
+			}
+		},
+		{
+			"id": "hallway",
+			"name": "廊下",
+			"type": "path",
+			"coordinates": "M121 63H238V128H199V150H189V258H138V211H119V136H134V111H121V63Z",
+			"style": {
+				"fill": "#D9D9D9"
+			}
+		},
+		{
+			"id": "bath",
+			"name": "風呂",
+			"type": "rect",
+			"x": 0,
+			"y": 113,
+			"width": 80,
+			"height": 98,
+			"style": {
+				"fill": "#D9D9D9"
+			}
+		},
+		{
+			"id": "living_closet",
+			"name": "クローゼット",
+			"type": "path",
+			"coordinates": "M0 213H91V278H0V213Z",
+			"style": {
+				"fill": "#D9D9D9"
+			}
+		},
+		{
+			"id": "living",
+			"name": "リビング",
+			"type": "path",
+			"coordinates": "M0 280H93V260H238V455H50.5L50 404.444H0V280Z",
+			"style": {
+				"fill": "#D9D9D9"
+			}
+		},
+		{
+			"id": "kitchen",
+			"name": "キッチン",
+			"type": "rect",
+			"x": 82,
+			"y": 136,
+			"width": 35,
+			"height": 75,
+			"style": {
+				"fill": "#D9D9D9"
+			}
+		},
+		{
+			"id": "refrigerator",
+			"name": "冷蔵庫",
+			"type": "rect",
+			"x": 93,
+			"y": 213,
+			"width": 43,
+			"height": 45,
+			"style": {
+				"fill": "#D9D9D9"
+			}
+		},
+		{
+			"id": "shoe_rack",
+			"name": "下駄箱",
+			"type": "rect",
+			"x": 201,
+			"y": 130,
+			"width": 37,
+			"height": 20,
+			"style": {
+				"fill": "#D9D9D9"
+			}
+		},
+		{
+			"id": "toilet",
+			"name": "トイレ",
+			"type": "rect",
+			"x": 191,
+			"y": 152,
+			"width": 47,
+			"height": 76,
+			"style": {
+				"fill": "#D9D9D9"
+			}
+		}
+	]
+}
