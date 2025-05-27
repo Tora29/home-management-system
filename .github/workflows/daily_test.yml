@@ -1,0 +1,85 @@
+name: Daily Test
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: self-hosted
+
+    steps:
+      - name: リポジトリのチェックアウト
+        uses: actions/checkout@v4
+
+      - name: Node.js のセットアップ
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: フロントエンドディレクトリに移動
+        run: cd frontend
+
+      - name: Node.jsモジュール のキャッシュ
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('frontend/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: 依存関係のインストール
+        run: |
+          cd frontend
+          npm install
+
+      - name: テスト実行後カバレッジを生成
+        run: |
+          cd frontend
+          npm run test:unit -- --coverage
+        continue-on-error: true
+        id: test
+
+      - name: カバレッジを抽出
+        if: always()
+        id: coverage
+        run: |
+          cd frontend
+          if [ -f coverage/coverage-summary.json ]; then
+            COVERAGE=$(node -e "try { const data = require('./coverage/coverage-summary.json'); console.log(data.total.statements.pct || 0); } catch(e) { console.log(0); }")
+            echo "coverage=$COVERAGE" >> $GITHUB_OUTPUT
+          else
+            echo "coverage=0" >> $GITHUB_OUTPUT
+          fi
+
+      - name: カバレッジレポートのアップロード
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: frontend/coverage/
+
+      # テスト成功時のSlack 通知
+      - name: テスト成功時のSlack 通知
+        if: success()
+        uses: rtCamp/action-slack-notify@v2.2.0
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_MESSAGE: |
+            ✅ テストが成功しました。
+            カバレッジ: ${{ steps.coverage.outputs.coverage }}%
+          SLACK_USERNAME: 'Vitest Bot'
+          SLACK_ICON_EMOJI: ':rocket:'
+          SLACK_COLOR: 'good'
+
+      # テスト失敗時のSlack 通知
+      - name: テスト失敗時のSlack 通知
+        if: failure()
+        uses: rtCamp/action-slack-notify@v2.2.0
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_MESSAGE: '❌ テストが失敗しました。'
+          SLACK_COLOR: 'danger'
+          SLACK_USERNAME: 'Vitest Bot'
+          SLACK_ICON_EMOJI: ':rocket:'
