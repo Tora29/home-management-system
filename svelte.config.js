@@ -9,7 +9,7 @@ const config = {
 	},
 	kit: {
 		files: {
-			assets: 'src/shared/static/icons'
+			assets: 'src/shared/static/img'
 		},
 		alias: {
 			$shared: './src/shared',
