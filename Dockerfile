@@ -2,7 +2,7 @@
 FROM node:24-slim
 
 # opensslをインストール
-RUN apt-get update && apt-get install -y openssl
+RUN apt-get update && apt-get install -y openssl libssl-dev
 
 # ワークディレクトリを設定
 WORKDIR /app
