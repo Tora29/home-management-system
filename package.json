@@ -18,7 +18,8 @@
 		"lint": "npm run lint:prettier && npm run lint:eslint && npm run lint:prisma && npm run lint:ts",
 		"test:unit": "vitest",
 		"test": "npm run test:unit -- --run && npm run test:e2e",
-		"test:e2e": "playwright test"
+		"test:e2e": "playwright test",
+		"seed": "node prisma/seed.js"
 	},
 	"devDependencies": {
 		"@eslint/compat": "^1.2.5",
@@ -46,7 +47,8 @@
 		"svelte": "^5.0.0",
 		"svelte-check": "^4.0.0",
 		"tailwindcss": "^4.0.0",
-		"typescript": "^5.0.0",
+		"ts-node": "^10.9.2",
+		"typescript": "^5.8.3",
 		"typescript-eslint": "^8.20.0",
 		"vite": "^6.2.6",
 		"vitest": "^3.0.0"
