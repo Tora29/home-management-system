@@ -1,5 +1,8 @@
 import { apiLoad } from '$shared/utils/api/fetch';
-import type { InventoryItem, InventoryItemWithRelations } from '$features/inventoryList/model/InventoryListModel';
+import type {
+	InventoryItem,
+	InventoryItemWithRelations
+} from '$features/inventoryList/model/InventoryListModel';
 
 /**
  * 在庫一覧をAPIから取得する

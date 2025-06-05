@@ -27,7 +27,7 @@
 		label: string;
 		sortable?: boolean;
 		align?: 'left' | 'center' | 'right';
-		formatter?: (value: any) => string;
+		formatter?: (value: unknown) => string;
 		width?: string;
 	}
 
@@ -45,7 +45,7 @@
 	/**
 	 * コンポーネントのプロパティ定義
 	 * @typedef {Object} DataTableProps
-	 * @property {Array<Record<string, any>>} [data=[]] - テーブルデータ
+	 * @property {Array<Record<string, unknown>>} [data=[]] - テーブルデータ
 	 * @property {Array<TableColumn>} [columns=[]] - テーブル列の定義
 	 * @property {Array<PageSizeOption>} [pageSizeOptions] - ページサイズオプション
 	 * @property {number} [defaultPageSize=5] - デフォルトのページサイズ
@@ -58,7 +58,7 @@
 	 * @property {Function} [onPageSizeChange] - ページサイズ変更時のコールバック
 	 */
 	interface DataTableProps {
-		data?: Record<string, any>[];
+		data?: unknown[];
 		columns?: TableColumn[];
 		pageSizeOptions?: PageSizeOption[];
 		defaultPageSize?: number;
@@ -137,11 +137,11 @@
 
 	/**
 	 * セルの値をフォーマット
-	 * @param {any} value - 元の値
+	 * @param {unknown} value - 元の値
 	 * @param {TableColumn} column - 列定義
 	 * @returns {string} フォーマット済みの値
 	 */
-	function formatCellValue(value: any, column: TableColumn): string {
+	function formatCellValue(value: unknown, column: TableColumn): string {
 		if (column.formatter && typeof column.formatter === 'function') {
 			return column.formatter(value);
 		}
@@ -150,12 +150,21 @@
 
 	/**
 	 * ネストしたオブジェクトから値を取得する
-	 * @param {any} obj - 対象オブジェクト
+	 * @param {unknown} obj - 対象オブジェクト
 	 * @param {string} path - ドット記法のパス（例：'item.name'）
-	 * @returns {any} 取得した値
+	 * @returns {unknown} 取得した値
 	 */
-	function getNestedValue(obj: any, path: string): any {
-		return path.split('.').reduce((current, key) => current?.[key], obj);
+	function getNestedValue(obj: unknown, path: string): unknown {
+		if (!obj || typeof obj !== 'object') {
+			return undefined;
+		}
+
+		return path.split('.').reduce((current: unknown, key: string) => {
+			if (current && typeof current === 'object' && key in current) {
+				return (current as Record<string, unknown>)[key];
+			}
+			return undefined;
+		}, obj);
 	}
 
 	/**
@@ -187,7 +196,7 @@
 		<table class="table table-fixed caption-bottom">
 			<thead>
 				<tr>
-					{#each columns as column}
+					{#each columns as column (column.key)}
 						<th
 							class={getAlignClass(column.align)}
 							style={column.width ? `width: ${column.width}` : ''}>{column.label}</th
@@ -196,9 +205,9 @@
 				</tr>
 			</thead>
 			<tbody class="[&>tr]:hover:preset-tonal-primary">
-				{#each slicedSource() as row}
+				{#each slicedSource() as row, index (index)}
 					<tr>
-						{#each columns as column}
+						{#each columns as column (column.key)}
 							<td
 								class={getAlignClass(column.align)}
 								style={column.width ? `width: ${column.width}` : ''}
@@ -223,7 +232,7 @@
 					value={size}
 					onchange={handlePageSizeChange}
 				>
-					{#each enhancedPageSizeOptions() as option}
+					{#each enhancedPageSizeOptions() as option (option.value)}
 						<option value={option.value}>{option.label}</option>
 					{/each}
 				</select>
