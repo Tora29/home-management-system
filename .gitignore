@@ -25,6 +25,8 @@ coverage
 
 # Prisma
 generated/prisma
+node_modules/.prisma/
+node_modules/@prisma/
 
 # cheatsheet
 cheatsheet.md

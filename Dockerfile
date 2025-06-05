@@ -11,12 +11,11 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
 
-# Prisma用
-COPY prisma ./prisma
-RUN npx prisma generate
-
-# アプリ本体
+# アプリ本体をコピー
 COPY . .
+
+# Prismaクライアントを生成
+RUN npx prisma generate
 
 # SvelteKitを本番ビルド
 RUN npm run build
