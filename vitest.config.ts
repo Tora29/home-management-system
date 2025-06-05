@@ -3,6 +3,22 @@ import { svelteTesting } from '@testing-library/svelte/vite';
 
 export default defineConfig({
 	test: {
+		coverage: {
+			provider: 'v8',
+			reportsDirectory: './coverage',
+			reporter: ['text', 'html'],
+			all: true,
+			include: [
+				'src/shared/components/**/*.svelte',
+				'src/features/plm/**/ui/**/*.svelte',
+				'src/features/common/**/ui/**/*.svelte',
+				'src/entities/plm/**/ui/**/*.svelte',
+				'src/entities/common/**/ui/**/*.svelte',
+				'src/widgets/**/ui/**/*.svelte',
+				'src/routes/**/*.svelte'
+			],
+			exclude: ['**/node_modules/**', '**/tests/**']
+		},
 		workspace: [
 			{
 				extends: './vite.config.ts',
