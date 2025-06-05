@@ -1,11 +1,12 @@
 <script lang="ts">
 	import { Pagination } from '@skeletonlabs/skeleton-svelte';
+
 	// Icons
-	import IconArrowLeft from '@lucide/svelte/icons/arrow-left';
-	import IconArrowRight from '@lucide/svelte/icons/arrow-right';
-	import IconEllipsis from '@lucide/svelte/icons/ellipsis';
-	import IconFirst from '@lucide/svelte/icons/chevrons-left';
-	import IconLast from '@lucide/svelte/icons/chevron-right';
+	import ArrowLeft from '$shared/static/icon/ArrowLeft.svelte';
+	import ArrowRight from '$shared/static/icon/ArrowRight.svelte';
+	import Ellipsis from '$shared/static/icon/Ellipsis.svelte';
+	import ChevronsLeft from '$shared/static/icon/ChevronsLeft.svelte';
+	import ChevronRight from '$shared/static/icon/ChevronRight.svelte';
 
 	/**
 	 * データテーブルコンポーネント
@@ -73,9 +74,11 @@
 
 	// デフォルトのページサイズオプション
 	const defaultPageSizeOptions: PageSizeOption[] = [
-		{ value: 1, label: 'Items 1' },
-		{ value: 2, label: 'Items 2' },
-		{ value: 5, label: 'Items 5' }
+		{ value: 5, label: 'Items 5' },
+		{ value: 10, label: 'Items 10' },
+		{ value: 20, label: 'Items 20' },
+		{ value: 50, label: 'Items 50' },
+		{ value: 100, label: 'Items 100' }
 	];
 
 	/**
@@ -151,7 +154,7 @@
 	/**
 	 * ネストしたオブジェクトから値を取得する
 	 * @param {unknown} obj - 対象オブジェクト
-	 * @param {string} path - ドット記法のパス（例：'item.name'）
+	 * @param {string} path - ドット記法のパス
 	 * @returns {unknown} 取得した値
 	 */
 	function getNestedValue(obj: unknown, path: string): unknown {
@@ -247,11 +250,11 @@
 				onPageSizeChange={(e) => (size = e.pageSize)}
 				{siblingCount}
 			>
-				{#snippet labelEllipsis()}<IconEllipsis class="size-4" />{/snippet}
-				{#snippet labelNext()}<IconArrowRight class="size-4" />{/snippet}
-				{#snippet labelPrevious()}<IconArrowLeft class="size-4" />{/snippet}
-				{#snippet labelFirst()}<IconFirst class="size-4" />{/snippet}
-				{#snippet labelLast()}<IconLast class="size-4" />{/snippet}
+				{#snippet labelEllipsis()}<Ellipsis />{/snippet}
+				{#snippet labelNext()}<ArrowRight />{/snippet}
+				{#snippet labelPrevious()}<ArrowLeft />{/snippet}
+				{#snippet labelFirst()}<ChevronsLeft />{/snippet}
+				{#snippet labelLast()}<ChevronRight />{/snippet}
 			</Pagination>
 		</footer>
 	{/if}
