@@ -68,9 +68,12 @@
 	let inputValue = $state(value);
 	let debounceTimer: ReturnType<typeof setTimeout> | null = null;
 
-	// valueプロパティの変更を監視
+	// propsのvalueが変更された時に内部状態を同期
 	$effect(() => {
-		inputValue = value;
+		// 外部からのvalue変更時のみ更新（無限ループを防ぐ）
+		if (inputValue !== value) {
+			inputValue = value;
+		}
 	});
 
 	/**

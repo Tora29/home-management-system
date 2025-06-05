@@ -8,7 +8,7 @@
 	import IconVideo from '@lucide/svelte/icons/video';
 </script>
 
-<div class="card border-surface-100-900 grid h-screen w-full">
+<div class="card border-surface-100-900 grid h-full w-full">
 	<Navigation.Rail>
 		{#snippet tiles()}
 			<Navigation.Tile label="Dashboard" href="/"><Dashboard /></Navigation.Tile>
