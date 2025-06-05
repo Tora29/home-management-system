@@ -10,6 +10,9 @@ services:
       - DATABASE_URL=postgresql://postgres:password@db:5432/mydb
     depends_on:
       - db
+    volumes:
+      - .:/app
+      - /app/node_modules
 
   db:
     image: postgres:16
