@@ -6,14 +6,12 @@ export default defineConfig({
 		coverage: {
 			provider: 'v8',
 			reportsDirectory: './coverage',
-			reporter: ['text', 'html'],
-			all: true,
+			reporter: ['text', 'html', 'json-summary'],
+			all: false,
 			include: [
 				'src/shared/components/**/*.svelte',
-				'src/features/plm/**/ui/**/*.svelte',
-				'src/features/common/**/ui/**/*.svelte',
-				'src/entities/plm/**/ui/**/*.svelte',
-				'src/entities/common/**/ui/**/*.svelte',
+				'src/features/**/ui/**/*.svelte',
+				'src/entities/**/ui/**/*.svelte',
 				'src/widgets/**/ui/**/*.svelte',
 				'src/routes/**/*.svelte'
 			],
