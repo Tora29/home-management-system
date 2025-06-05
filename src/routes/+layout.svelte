@@ -10,11 +10,11 @@
 	<div class="flex-shrink-0">
 		<Appbar />
 	</div>
-	<div class="flex flex-grow flex-row">
+	<div class="flex min-h-0 flex-grow flex-row">
 		<div class="flex-shrink-0">
 			<Navgation />
 		</div>
-		<div class="flex-grow">
+		<div class="flex-grow overflow-auto">
 			{@render children()}
 		</div>
 	</div>
