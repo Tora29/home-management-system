@@ -1,7 +1,5 @@
 import { json } from '@sveltejs/kit';
-import { PrismaClient } from '$prisma';
-
-const prisma = new PrismaClient();
+import { prisma } from '$shared/utils/api/prisma';
 
 export async function GET() {
 	const categories = await prisma.category.findMany();
