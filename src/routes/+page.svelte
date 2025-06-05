@@ -9,7 +9,7 @@
 			間取り図
 			<p class="text-sm font-normal">選択した部屋の在庫を表示します。</p>
 		</h2>
-		<div class="">
+		<div class="flex justify-center">
 			<FloorPlan />
 		</div>
 	</div>

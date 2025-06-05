@@ -15,7 +15,7 @@ const config = {
 			$shared: './src/shared',
 			$entities: './src/entities',
 			$features: './src/features',
-			$widgets: './src/widgets',
+			$widgets: './src/widgets'
 		},
 		adapter: adapter()
 	}
