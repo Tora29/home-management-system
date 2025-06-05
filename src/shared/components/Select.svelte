@@ -10,7 +10,7 @@
 	 * @property {Array<{label: string, value: string}>} [options] - オプションリスト
 	 * @property {string} [label] - ラベル
 	 * @property {string} [id] - セレクトボックスのID
-	 * @property {string} [placeholder='検索...'] - プレースホルダーテキスト
+	 * @property {string} [placeholder='Select...'] - プレースホルダーテキスト
 	 * @property {string} [title] - セレクトボックスのタイトル
 	 * @property {string} [value=''] - 選択値
 	 * @property {string} [className=''] - 追加のCSSクラス
