@@ -7,7 +7,7 @@ export default defineConfig({
 			provider: 'v8',
 			reportsDirectory: './coverage',
 			reporter: ['text', 'html', 'json-summary'],
-			all: false,
+			all: true,
 			include: [
 				'src/shared/components/**/*.svelte',
 				'src/features/**/ui/**/*.svelte',
