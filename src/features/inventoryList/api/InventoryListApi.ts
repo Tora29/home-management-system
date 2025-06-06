@@ -10,7 +10,7 @@ import type { InventoryItemWithRelations } from '$features/inventoryList/model/I
  * 共通関数fetchInventoryListを型付きで呼び出す
  *
  * @param {typeof fetch} fetchFn - fetch関数
- * @returns {Promise<InventoryItemWithRelations[]>} フロントエンド用の在庫一覧
+ * @returns {Promise<InventoryItemWithRelations[]>}
  */
 export const getInventoryList = async (
 	fetchFn: typeof fetch

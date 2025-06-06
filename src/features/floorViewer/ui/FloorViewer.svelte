@@ -8,8 +8,7 @@
 
 	let svgElement: SVGSVGElement;
 
-	function handleRoomClick(id: string, name: string) {
-		console.log('Clicked:', id, name);
+	function handleRoomClick(name: string) {
 		// 親コンポーネントに部屋選択を通知
 		if (onRoomSelect) {
 			onRoomSelect(name);

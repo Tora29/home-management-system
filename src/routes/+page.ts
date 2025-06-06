@@ -10,10 +10,3 @@ export const load: PageLoad = async ({ fetch }) => {
 	const inventories = await getInventoryList(fetch);
 	return { inventories };
 };
-
-// import { fetchCategories } from '$shared/api/fetchCategories';
-
-// export const load: PageLoad = async ({ fetch }) => {
-// 	const categories = await fetchCategories(fetch);
-// 	return { categories };
-// };

@@ -16,8 +16,6 @@
 	function handleResetRoomSelection() {
 		selectedRoom = '';
 	}
-
-	console.log(data);
 </script>
 
 <div class="flex flex-col gap-6">
