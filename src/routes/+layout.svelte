@@ -11,7 +11,7 @@
 		<!-- 左メニュー -->
 		<div class="bg-dark-sub h-full w-48 flex-shrink-0">メニュー</div>
 		<!-- メインコンテンツ -->
-		<div class="bg-light-main grid flex-grow grid-cols-12 gap-4 overflow-auto">
+		<div class="bg-light-main grid flex-grow grid-cols-12 gap-4 overflow-auto p-4">
 			{@render children()}
 		</div>
 	</div>

@@ -8,3 +8,73 @@
 	--color-light-accent: #1d1d1d;
 	--color-light-sub: #dcba92;
 }
+
+/* 汎用的なテーマクラス */
+@layer components {
+	/* ライトテーマのベーススタイル */
+	.theme-light {
+		--bg-color: #ffffff;
+		--text-color: #111827;
+		--border-color: #d1d5db;
+		--hover-border-color: var(--color-dark-accent);
+		--hover-bg-color: var(--color-light-main);
+		--focus-border-color: var(--color-dark-accent);
+		--ring-color: var(--color-dark-accent);
+
+		background-color: var(--bg-color);
+		color: var(--text-color);
+		border-color: var(--border-color);
+	}
+
+	/* ダークテーマのベーススタイル */
+	.theme-dark {
+		--bg-color: var(--color-dark-main);
+		--text-color: var(--color-light-main);
+		--border-color: var(--color-dark-sub);
+		--hover-border-color: var(--color-light-accent);
+		--hover-bg-color: var(--color-dark-sub);
+		--focus-border-color: var(--color-light-accent);
+		--ring-color: var(--color-light-accent);
+
+		background-color: var(--bg-color);
+		color: var(--text-color);
+		border-color: var(--border-color);
+	}
+
+	/* ホバー効果 */
+	.hover-theme:hover:not(:disabled) {
+		border-color: var(--hover-border-color);
+		background-color: var(--hover-bg-color);
+	}
+
+	/* フォーカス効果 */
+	.focus-theme:focus {
+		border-color: var(--focus-border-color);
+		box-shadow: 0 0 0 3px rgba(from var(--ring-color) r g b / 0.2);
+		outline: none;
+	}
+
+	/* 無効化状態 */
+	.disabled-theme:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+
+	/* 汎用的なフォーム要素スタイル */
+	.form-element {
+		@apply flex w-full items-center justify-between rounded-md border shadow-sm transition-colors duration-200;
+	}
+
+	/* サイズバリエーション */
+	.size-sm {
+		@apply px-2 py-1 text-sm;
+	}
+
+	.size-md {
+		@apply px-3 py-2 text-base;
+	}
+
+	.size-lg {
+		@apply px-4 py-3 text-lg;
+	}
+}

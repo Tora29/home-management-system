@@ -43,6 +43,7 @@
 		"vitest-browser-svelte": "^0.1.0"
 	},
 	"dependencies": {
+		"@lucide/svelte": "^0.525.0",
 		"@prisma/client": "^6.10.1",
 		"@supabase/supabase-js": "^2.50.2",
 		"prisma": "^6.10.1"
