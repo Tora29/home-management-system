@@ -4,7 +4,7 @@ import { PrismaClient } from '@prisma/client';
  * グローバルオブジェクトに型安全にPrismaClientを追加するための型定義
  */
 const globalForPrisma = globalThis as unknown as {
-  prisma: PrismaClient | undefined;
+	prisma: PrismaClient | undefined;
 };
 
 /**

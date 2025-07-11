@@ -14,74 +14,74 @@ const DEFAULT_TIMEOUT = 10000;
  * @returns 統一されたAPIレスポンス
  */
 export const apiFetch = async <T>(
-  url: string,
-  options: FetchOptions = {}
+	url: string,
+	options: FetchOptions = {}
 ): Promise<ApiResponse<T>> => {
-  const { timeout = DEFAULT_TIMEOUT, ...fetchOptions } = options;
+	const { timeout = DEFAULT_TIMEOUT, ...fetchOptions } = options;
 
-  try {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), timeout);
+	try {
+		const controller = new AbortController();
+		const timeoutId = setTimeout(() => controller.abort(), timeout);
 
-    const response = await fetch(url, {
-      ...fetchOptions,
-      signal: controller.signal
-    });
+		const response = await fetch(url, {
+			...fetchOptions,
+			signal: controller.signal
+		});
 
-    clearTimeout(timeoutId);
+		clearTimeout(timeoutId);
 
-    if (!response.ok) {
-      const errorMessage = `HTTP ${response.status}: ${response.statusText}`;
-      throw new FetchError(errorMessage, response.status, response.statusText);
-    }
+		if (!response.ok) {
+			const errorMessage = `HTTP ${response.status}: ${response.statusText}`;
+			throw new FetchError(errorMessage, response.status, response.statusText);
+		}
 
-    const contentType = response.headers.get('content-type');
-    let data: T;
+		const contentType = response.headers.get('content-type');
+		let data: T;
 
-    if (contentType && contentType.includes('application/json')) {
-      data = await response.json();
-    } else {
-      data = (await response.text()) as T;
-    }
+		if (contentType && contentType.includes('application/json')) {
+			data = await response.json();
+		} else {
+			data = (await response.text()) as T;
+		}
 
-    return {
-      data,
-      error: null,
-      success: true
-    };
-  } catch (error) {
-    logError(error, `API Fetch: ${url}`);
-    
-    if (error instanceof FetchError) {
-      return {
-        data: null,
-        error: error.message,
-        success: false
-      };
-    }
+		return {
+			data,
+			error: null,
+			success: true
+		};
+	} catch (error) {
+		logError(error, `API Fetch: ${url}`);
 
-    if (error instanceof Error) {
-      if (error.name === 'AbortError') {
-        return {
-          data: null,
-          error: ERROR_MESSAGES.TIMEOUT_ERROR,
-          success: false
-        };
-      }
+		if (error instanceof FetchError) {
+			return {
+				data: null,
+				error: error.message,
+				success: false
+			};
+		}
 
-      return {
-        data: null,
-        error: error.message,
-        success: false
-      };
-    }
+		if (error instanceof Error) {
+			if (error.name === 'AbortError') {
+				return {
+					data: null,
+					error: ERROR_MESSAGES.TIMEOUT_ERROR,
+					success: false
+				};
+			}
 
-    return {
-      data: null,
-      error: ERROR_MESSAGES.UNEXPECTED_ERROR,
-      success: false
-    };
-  }
+			return {
+				data: null,
+				error: error.message,
+				success: false
+			};
+		}
+
+		return {
+			data: null,
+			error: ERROR_MESSAGES.UNEXPECTED_ERROR,
+			success: false
+		};
+	}
 };
 
 /**
@@ -92,13 +92,13 @@ export const apiFetch = async <T>(
  * @returns 統一されたAPIレスポンス
  */
 export const apiGet = async <T>(
-  url: string,
-  options?: Omit<FetchOptions, 'method' | 'body'>
+	url: string,
+	options?: Omit<FetchOptions, 'method' | 'body'>
 ): Promise<ApiResponse<T>> => {
-  return apiFetch<T>(url, {
-    ...options,
-    method: 'GET'
-  });
+	return apiFetch<T>(url, {
+		...options,
+		method: 'GET'
+	});
 };
 
 /**
@@ -110,19 +110,19 @@ export const apiGet = async <T>(
  * @returns 統一されたAPIレスポンス
  */
 export const apiPost = async <T, TData = unknown>(
-  url: string,
-  data?: TData,
-  options?: Omit<FetchOptions, 'method' | 'body'>
+	url: string,
+	data?: TData,
+	options?: Omit<FetchOptions, 'method' | 'body'>
 ): Promise<ApiResponse<T>> => {
-  return apiFetch<T>(url, {
-    ...options,
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      ...options?.headers
-    },
-    body: data ? JSON.stringify(data) : undefined
-  });
+	return apiFetch<T>(url, {
+		...options,
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			...options?.headers
+		},
+		body: data ? JSON.stringify(data) : undefined
+	});
 };
 
 /**
@@ -134,19 +134,19 @@ export const apiPost = async <T, TData = unknown>(
  * @returns 統一されたAPIレスポンス
  */
 export const apiPut = async <T, TData = unknown>(
-  url: string,
-  data?: TData,
-  options?: Omit<FetchOptions, 'method' | 'body'>
+	url: string,
+	data?: TData,
+	options?: Omit<FetchOptions, 'method' | 'body'>
 ): Promise<ApiResponse<T>> => {
-  return apiFetch<T>(url, {
-    ...options,
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-      ...options?.headers
-    },
-    body: data ? JSON.stringify(data) : undefined
-  });
+	return apiFetch<T>(url, {
+		...options,
+		method: 'PUT',
+		headers: {
+			'Content-Type': 'application/json',
+			...options?.headers
+		},
+		body: data ? JSON.stringify(data) : undefined
+	});
 };
 
 /**
@@ -157,11 +157,11 @@ export const apiPut = async <T, TData = unknown>(
  * @returns 統一されたAPIレスポンス
  */
 export const apiDelete = async <T>(
-  url: string,
-  options?: Omit<FetchOptions, 'method' | 'body'>
+	url: string,
+	options?: Omit<FetchOptions, 'method' | 'body'>
 ): Promise<ApiResponse<T>> => {
-  return apiFetch<T>(url, {
-    ...options,
-    method: 'DELETE'
-  });
+	return apiFetch<T>(url, {
+		...options,
+		method: 'DELETE'
+	});
 };

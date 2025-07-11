@@ -12,7 +12,9 @@ const config = {
 		alias: {
 			$entities: './src/entities',
 			$features: './src/features',
-			$shared: './src/shared'
+			$shared: './src/shared',
+			$routes: './src/routes',
+			$widgets: './src/widgets'
 		}
 	}
 };
