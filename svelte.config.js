@@ -4,16 +4,15 @@ import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	preprocess: vitePreprocess(),
-
+	compilerOptions: {
+		runes: true
+	},
 	kit: {
-		compilerOptions: {
-			runes: true
-		},
 		adapter: adapter(),
 		alias: {
-			entities: './src/entities',
-			features: './src/features',
-			shared: './src/shared'
+			$entities: './src/entities',
+			$features: './src/features',
+			$shared: './src/shared'
 		}
 	}
 };
