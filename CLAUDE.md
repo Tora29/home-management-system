@@ -124,3 +124,7 @@ npm run test         # すべてのテストを実行（ユニット + E2E）
 
 - anyの不使用
 - 適切なJSDocを日本語で記述
+- Svelte5の記法に準拠する
+- npm run lintを最後に実施する
+- npm run checkを最後に実施する
+- <style>タグは使用せず、スタイルは全てTailwindで表現すること
