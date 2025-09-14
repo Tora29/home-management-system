@@ -13,10 +13,9 @@
 4. コードベースを確認し、記載内容の妥当性を確認する。不明瞭な点があれば、ユーザーに追加の記載をお願いする
 5. 内容の作成が完了したら、issue の内容を更新する
 
-!`read -ra ARGS <<< "$ARGUMENTS"`
-
-repository: ${ARGS[0]}
-issue number: ${ARGS[1]}
+引数の処理:
+- 第1引数: repository (例: Tora29/home-management-system)
+- 第2引数: issue number (例: 1)
 
 issue number が指定されていない場合は、当該リポジトリの オープンされた issue を新しい順に確認し、内容が充足していない issue を選定し、ユーザーに提示する。
 

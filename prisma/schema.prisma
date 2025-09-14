@@ -1,0 +1,140 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_PRISMA_URL")
+}
+
+// ================================
+// カテゴリマスタ
+// ================================
+model Category {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  icon        String?
+  color       String?
+  sortOrder   Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  items       Item[]
+
+  @@map("categories")
+}
+
+// ================================
+// 在庫アイテム
+// ================================
+model Item {
+  id            String    @id @default(cuid())
+  name          String
+  description   String?
+  quantity      Float
+  unit          String
+  minimumStock  Float?
+  maximumStock  Float?
+  location      String?
+  expiryDate    DateTime?
+  barcode       String?
+  notes         String?
+  imageUrl      String?
+  isActive      Boolean   @default(true)
+  deletedAt     DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Relations
+  categoryId    String
+  category      Category  @relation(fields: [categoryId], references: [id])
+  shoppingItems ShoppingListItem[]
+  histories     ItemHistory[]
+  alerts        Alert[]
+
+  @@index([categoryId])
+  @@index([expiryDate])
+  @@index([deletedAt])
+  @@map("items")
+}
+
+// ================================
+// 買い物リスト
+// ================================
+model ShoppingListItem {
+  id          String   @id @default(cuid())
+  name        String
+  quantity    Float
+  unit        String
+  priority    Int      @default(0) // 0: 低, 1: 中, 2: 高
+  notes       String?
+  isChecked   Boolean  @default(false)
+  checkedAt   DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  itemId      String?
+  item        Item?    @relation(fields: [itemId], references: [id])
+
+  @@index([itemId])
+  @@index([isChecked])
+  @@map("shopping_list_items")
+}
+
+// ================================
+// アラート設定
+// ================================
+model Alert {
+  id                  String   @id @default(cuid())
+  type                String   // "LOW_STOCK" | "EXPIRY" | "OVERSTOCK"
+  isEnabled           Boolean  @default(true)
+  thresholdValue      Float?   // 在庫数または日数
+  message             String?
+  lastTriggeredAt     DateTime?
+  acknowledgedAt      DateTime?
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  // Relations
+  itemId              String
+  item                Item     @relation(fields: [itemId], references: [id])
+
+  @@index([itemId])
+  @@index([type])
+  @@index([isEnabled])
+  @@map("alerts")
+}
+
+// ================================
+// 在庫履歴
+// ================================
+model ItemHistory {
+  id          String   @id @default(cuid())
+  action      String   // "ADD" | "REMOVE" | "UPDATE" | "ADJUST"
+  quantity    Float
+  unit        String
+  reason      String?
+  notes       String?
+  beforeValue Float?
+  afterValue  Float
+  createdAt   DateTime @default(now())
+
+  // Relations
+  itemId      String
+  item        Item     @relation(fields: [itemId], references: [id])
+
+  @@index([itemId])
+  @@index([action])
+  @@index([createdAt])
+  @@map("item_histories")
+}
