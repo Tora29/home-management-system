@@ -34,6 +34,37 @@ model Category {
 }
 
 // ================================
+// 単位マスタ
+// ================================
+model Unit {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  displayName String
+  sortOrder   Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("units")
+}
+
+// ================================
+// 保管場所マスタ
+// ================================
+model Location {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  displayName String
+  description String?
+  sortOrder   Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("locations")
+}
+
+// ================================
 // 在庫アイテム
 // ================================
 model Item {

@@ -1,5 +1,8 @@
 export type { Category } from '@prisma/client'
 
+/**
+ *
+ */
 export interface CreateCategoryInput {
   name: string
   description?: string
@@ -8,6 +11,9 @@ export interface CreateCategoryInput {
   sortOrder?: number
 }
 
+/**
+ *
+ */
 export interface UpdateCategoryInput {
   name?: string
   description?: string
@@ -17,6 +23,9 @@ export interface UpdateCategoryInput {
   isActive?: boolean
 }
 
+/**
+ *
+ */
 export type CategoryWithItemCount = {
   id: string
   name: string

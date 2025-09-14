@@ -1,7 +1,13 @@
 export type { ItemHistory } from '@prisma/client'
 
+/**
+ *
+ */
 export type ItemAction = 'ADD' | 'REMOVE' | 'UPDATE' | 'ADJUST'
 
+/**
+ *
+ */
 export interface CreateItemHistoryInput {
   itemId: string
   action: ItemAction
@@ -13,6 +19,9 @@ export interface CreateItemHistoryInput {
   notes?: string
 }
 
+/**
+ *
+ */
 export type ItemHistoryWithItem = {
   id: string
   action: string

@@ -1,5 +1,8 @@
 export type { ShoppingListItem } from '@prisma/client'
 
+/**
+ *
+ */
 export interface CreateShoppingListItemInput {
   name: string
   quantity: number
@@ -9,6 +12,9 @@ export interface CreateShoppingListItemInput {
   itemId?: string
 }
 
+/**
+ *
+ */
 export interface UpdateShoppingListItemInput {
   name?: string
   quantity?: number
@@ -18,6 +24,9 @@ export interface UpdateShoppingListItemInput {
   isChecked?: boolean
 }
 
+/**
+ *
+ */
 export type ShoppingListItemWithItem = {
   id: string
   name: string

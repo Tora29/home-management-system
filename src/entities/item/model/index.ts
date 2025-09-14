@@ -1,5 +1,8 @@
 export type { Item, Category, ShoppingListItem, Alert, ItemHistory } from '@prisma/client'
 
+/**
+ *
+ */
 export type ItemWithRelations = {
   id: string
   name: string
@@ -26,12 +29,24 @@ export type ItemWithRelations = {
   }
 }
 
+/**
+ *
+ */
 export type AlertType = 'LOW_STOCK' | 'EXPIRY' | 'OVERSTOCK'
 
+/**
+ *
+ */
 export type ItemAction = 'ADD' | 'REMOVE' | 'UPDATE' | 'ADJUST'
 
+/**
+ *
+ */
 export type Priority = 0 | 1 | 2
 
+/**
+ *
+ */
 export interface CreateItemInput {
   name: string
   categoryId: string
@@ -47,6 +62,9 @@ export interface CreateItemInput {
   imageUrl?: string
 }
 
+/**
+ *
+ */
 export interface UpdateItemInput {
   name?: string
   categoryId?: string

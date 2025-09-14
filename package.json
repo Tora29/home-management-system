@@ -10,11 +10,21 @@
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:studio": "prisma studio",
-    "prisma:push": "prisma db push"
+    "prisma:push": "prisma db push",
+    "seed:categories": "tsx scripts/seed-categories.ts",
+    "seed:masters": "tsx scripts/seed-masters.ts"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.2.4",
+    "@chakra-ui/react": "^3.26.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
     "@prisma/client": "^6.16.1",
     "@vercel/postgres": "^0.10.0",
+    "framer-motion": "^12.23.12",
     "next": "15.5.2",
     "prisma": "^6.16.1",
     "react": "19.1.0",
@@ -22,13 +32,16 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
-    "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@typescript-eslint/eslint-plugin": "^8.43.0",
+    "@typescript-eslint/parser": "^8.43.0",
     "eslint": "^9",
     "eslint-config-next": "15.5.2",
-    "tailwindcss": "^4",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jsdoc": "^57.0.6",
+    "tsx": "^4.20.5",
     "typescript": "^5"
   }
 }

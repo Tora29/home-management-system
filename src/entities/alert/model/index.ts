@@ -1,7 +1,13 @@
 export type { Alert } from '@prisma/client'
 
+/**
+ *
+ */
 export type AlertType = 'LOW_STOCK' | 'EXPIRY' | 'OVERSTOCK'
 
+/**
+ *
+ */
 export interface CreateAlertInput {
   itemId: string
   type: AlertType
@@ -10,6 +16,9 @@ export interface CreateAlertInput {
   isEnabled?: boolean
 }
 
+/**
+ *
+ */
 export interface UpdateAlertInput {
   type?: AlertType
   thresholdValue?: number
@@ -18,6 +27,9 @@ export interface UpdateAlertInput {
   acknowledgedAt?: Date | null
 }
 
+/**
+ *
+ */
 export type AlertWithItem = {
   id: string
   type: string
