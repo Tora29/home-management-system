@@ -1,7 +1,7 @@
 # CLAUDE.md
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-All responses will be in Japanese.
+All responses will be in English.
 
 ## Commands
 
@@ -19,9 +19,11 @@ This is a Next.js 15 project using App Router with a Feature-Sliced Design (FSD)
 ### Layer Structure
 
 The project follows a strict dependency hierarchy:
+
 ```
 app → features → entities → shared
 ```
+
 - Upper layers can import from lower layers
 - Lower layers CANNOT import from upper layers
 - Cross-imports within the same layer are forbidden
@@ -95,13 +97,38 @@ src/
 ## MCP Servers
 
 The project is configured with three MCP servers:
+
 - **context7**: Documentation retrieval
-- **supabase**: Database operations (project: audmlwmanbwacwxgttgc)
 - **github**: Repository operations
 
 ## Path Aliases
 
 - `@/*` maps to `./src/*`
+
+## Quality Assurance
+
+### Runtime Error Handling
+
+After implementation, always check the following and fix any runtime errors immediately:
+
+1. **Development Server Check**
+   - Check for errors in the console while running `npm run dev`
+   - Check for errors in the browser console
+   - Check for 500 errors, NEXT_REDIRECT errors, etc.
+
+2. **Common Runtime Errors and Solutions**
+   - `Module not found`: Check import paths and module existence
+   - `Hydration error`: Check Server/Client Component boundaries
+   - `NEXT_REDIRECT`: Check error handling in Server Actions
+   - `Type error`: Check consistency between TypeScript definitions and runtime values
+
+3. **Fix Priority**
+   - Build errors > Runtime errors > TypeScript errors > ESLint warnings
+
+4. **Testing Procedure**
+   - Verify implemented features work correctly
+   - If errors occur, read error messages to identify the cause
+   - Always re-verify functionality after fixes
 
 ## Important Notes
 
@@ -110,3 +137,4 @@ The project is configured with three MCP servers:
 - Architecture rules are documented in `.claude/agents/00-Architechture-Rules/FSD-ARCHITECTURE-RULES.md`
 - Default to Server Components, use Client Components only when necessary
 - All mutations should use Server Actions with proper revalidation
+- **Always check for runtime errors after implementation and fix them if found**

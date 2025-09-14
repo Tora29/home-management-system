@@ -68,7 +68,7 @@ async function main() {
   let categoryCount = 0
   for (const category of categories) {
     const exists = await prisma.category.findFirst({
-      where: { name: category.name }
+      where: { name: category.name },
     })
 
     if (!exists) {

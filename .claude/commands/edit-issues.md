@@ -14,6 +14,7 @@
 5. 内容の作成が完了したら、issue の内容を更新する
 
 引数の処理:
+
 - 第1引数: repository (例: Tora29/home-management-system)
 - 第2引数: issue number (例: 1)
 

@@ -19,9 +19,11 @@ npm run lint         # ESLintチェックを実行
 ### レイヤー構造
 
 プロジェクトは厳格な依存階層に従います：
+
 ```
 app → features → entities → shared
 ```
+
 - 上位レイヤーは下位レイヤーからインポート可能
 - 下位レイヤーは上位レイヤーからインポート不可
 - 同一レイヤー内での相互インポートは禁止
@@ -95,6 +97,7 @@ src/
 ## MCPサーバー
 
 プロジェクトには3つのMCPサーバーが設定されています：
+
 - **context7**: ドキュメント取得
 - **supabase**: データベース操作 (プロジェクト: audmlwmanbwacwxgttgc)
 - **github**: リポジトリ操作
@@ -102,6 +105,31 @@ src/
 ## パスエイリアス
 
 - `@/*` は `./src/*` にマップ
+
+## Quality Assurance
+
+### Runtime Error Handling
+
+実装後は必ず以下を確認し、ランタイムエラーがある場合は即座に修正すること：
+
+1. **開発サーバーの確認**
+   - `npm run dev`実行中のコンソールでエラーがないか確認
+   - ブラウザのコンソールでエラーがないか確認
+   - 500エラーやNEXT_REDIRECTエラーなどがないか確認
+
+2. **一般的なランタイムエラーと対処法**
+   - `Module not found`: import文のパスやモジュールの存在を確認
+   - `Hydration error`: Server/Client Componentの境界を確認
+   - `NEXT_REDIRECT`: Server Actionでのエラーハンドリングを確認
+   - `Type error`: TypeScriptの型定義とランタイムの値の整合性を確認
+
+3. **修正の優先順位**
+   - ビルドエラー > ランタイムエラー > TypeScriptエラー > ESLint警告
+
+4. **テスト手順**
+   - 実装した機能の動作確認
+   - エラーが出た場合は、エラーメッセージを読んで原因を特定
+   - 修正後は必ず再度動作確認を行う
 
 ## 重要な注意事項
 

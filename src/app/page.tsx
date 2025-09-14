@@ -1,11 +1,13 @@
 'use client'
 
+import Link from 'next/link'
+
 import { Box, Container, Heading, Text, Button, Flex } from '@chakra-ui/react'
 
 /**
  * ホームページ
  */
-export default function Home(): JSX.Element {
+export default function Home(): React.ReactElement {
   return (
     <Container maxW="6xl" py="10">
       <Flex direction="column" gap="8">
@@ -18,21 +20,30 @@ export default function Home(): JSX.Element {
           </Text>
         </Box>
 
-        <Box bg="white" p="8" borderRadius="lg" boxShadow="md" borderWidth="1px" borderColor="gray.200">
+        <Box
+          bg="white"
+          p="8"
+          borderRadius="lg"
+          boxShadow="md"
+          borderWidth="1px"
+          borderColor="gray.200"
+        >
           <Flex direction="column" gap="6">
-            <Heading size="xl">
-              システムの特徴
-            </Heading>
+            <Heading size="xl">システムの特徴</Heading>
             <Text fontSize="lg">
               このシステムは、家庭内の在庫を効率的に管理し、買い物リストの作成や期限管理を支援します。
             </Text>
             <Flex gap="4" wrap="wrap">
-              <Button colorPalette="blue" size="lg">
-                在庫を確認
-              </Button>
-              <Button variant="outline" colorPalette="blue" size="lg">
-                買い物リストを作成
-              </Button>
+              <Link href="/inventory/register">
+                <Button colorPalette="blue" size="lg">
+                  在庫を確認
+                </Button>
+              </Link>
+              <Link href="/test-shared-components">
+                <Button variant="surface" colorPalette="purple" size="lg">
+                  コンポーネントサンプル
+                </Button>
+              </Link>
             </Flex>
           </Flex>
         </Box>
