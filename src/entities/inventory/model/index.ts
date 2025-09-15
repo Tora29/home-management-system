@@ -1,4 +1,5 @@
-export type { Item, CreateItemInput } from './item'
+export type { CreateItemInput, UpdateItemInput, UpdateQuantityInput } from './item'
+export { CreateItemSchema, UpdateItemSchema, UpdateQuantitySchema } from './item'
 export type { Category } from './category'
 export type { Unit } from './unit'
 export type { Location } from './location'

@@ -1,54 +1,51 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
+import { isRedirectError } from 'next/dist/client/components/redirect-error'
 import { redirect } from 'next/navigation'
 
-import { prisma } from '@/shared/lib/prisma'
-import { validateItemInput } from '@/shared/utils/validation/item'
+import { ZodError } from 'zod'
 
-import type { CreateItemInput } from '@/entities/inventory/model'
+import { CreateItemSchema } from '@/entities/inventory/model'
+import { ITEM_ERROR } from '@/shared/consts/errorMessage'
+import { prisma } from '@/shared/lib/prisma'
 
 /**
  * 在庫アイテムを作成するサーバーアクション
  */
 export async function createItemAction(
+  _prevState: { success: boolean; errors?: Record<string, string>; error?: string } | null,
   formData: FormData,
 ): Promise<{ success: boolean; errors?: Record<string, string>; error?: string } | never> {
   try {
-    // フォームデータを抽出
-    const input: CreateItemInput = {
-      name: formData.get('name') as string,
-      description: (formData.get('description') as string) || undefined,
-      quantity: parseFloat(formData.get('quantity') as string),
-      unit: formData.get('unit') as string,
-      minimumStock: formData.get('minimumStock')
-        ? parseFloat(formData.get('minimumStock') as string)
-        : undefined,
-      maximumStock: formData.get('maximumStock')
-        ? parseFloat(formData.get('maximumStock') as string)
-        : undefined,
-      location: (formData.get('location') as string) || undefined,
-      expiryDate: (formData.get('expiryDate') as string) || undefined,
-      barcode: (formData.get('barcode') as string) || undefined,
-      notes: (formData.get('notes') as string) || undefined,
-      categoryId: formData.get('categoryId') as string,
+    // FormDataをオブジェクトに変換
+    const rawInput = Object.fromEntries(formData.entries())
+
+    // 空文字を undefined に変換（数値はZodに任せる）
+    const processedInput = {
+      name: rawInput.name || '',
+      description: rawInput.description || undefined,
+      quantity: rawInput.quantity, // Zodのcoerceに任せる
+      unit: rawInput.unit || '',
+      location: rawInput.location || '',
+      barcode: rawInput.barcode || undefined,
+      notes: rawInput.notes || undefined,
+      categoryId: rawInput.categoryId || '',
     }
 
-    // バリデーション
-    const validation = validateItemInput(input)
-    if (!validation.success) {
+    // Zodでバリデーション
+    const validatedData = CreateItemSchema.parse(processedInput)
+
+    if (!validatedData) {
       return {
         success: false,
-        errors: validation.errors,
+        error: ITEM_ERROR.CREATE_FAILED,
       }
     }
 
     // データベースに保存
     const item = await prisma.item.create({
-      data: {
-        ...input,
-        expiryDate: input.expiryDate ? new Date(input.expiryDate) : undefined,
-      },
+      data: validatedData,
     })
 
     // 在庫履歴を記録
@@ -69,10 +66,29 @@ export async function createItemAction(
     // 成功時はリダイレクト
     redirect('/inventory')
   } catch (error) {
+    // Zodのバリデーションエラーを処理
+    if (error instanceof ZodError) {
+      const errors: Record<string, string> = {}
+      error.issues.forEach((issue) => {
+        if (issue.path[0]) {
+          errors[issue.path[0].toString()] = issue.message
+        }
+      })
+      return {
+        success: false,
+        errors,
+      }
+    }
+
+    // Next.jsのredirectエラーは再スロー
+    if (isRedirectError(error)) {
+      throw error
+    }
+
     console.error('Failed to create item:', error)
     return {
       success: false,
-      error: 'アイテムの登録に失敗しました',
+      error: ITEM_ERROR.CREATE_FAILED,
     }
   }
 }
