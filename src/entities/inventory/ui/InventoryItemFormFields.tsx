@@ -93,6 +93,7 @@ export function InventoryItemFormFields({
             <Field.RequiredIndicator />
           </Field.Label>
           <Select.Root name="unit" collection={unitCollection}>
+            <Select.HiddenSelect />
             <Select.Trigger>
               <Select.ValueText placeholder="選択してください" />
               <Select.Indicator />
@@ -122,6 +123,7 @@ export function InventoryItemFormFields({
             <Field.RequiredIndicator />
           </Field.Label>
           <Select.Root name="categoryId" collection={categoryCollection}>
+            <Select.HiddenSelect />
             <Select.Trigger>
               <Select.ValueText placeholder="選択してください" />
               <Select.Indicator />
@@ -150,6 +152,7 @@ export function InventoryItemFormFields({
             <Field.RequiredIndicator />
           </Field.Label>
           <Select.Root name="location" collection={locationCollection}>
+            <Select.HiddenSelect />
             <Select.Trigger>
               <Select.ValueText placeholder="選択してください" />
               <Select.Indicator />

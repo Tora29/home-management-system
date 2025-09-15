@@ -21,7 +21,7 @@ export async function createItemAction(
     // FormDataをオブジェクトに変換
     const rawInput = Object.fromEntries(formData.entries())
 
-    // 空文字を undefined に変換（数値はZodに任せる）
+    // 空文字を undefined に変換
     const processedInput = {
       name: rawInput.name || '',
       description: rawInput.description || undefined,
@@ -85,7 +85,6 @@ export async function createItemAction(
       throw error
     }
 
-    console.error('Failed to create item:', error)
     return {
       success: false,
       error: ITEM_ERROR.CREATE_FAILED,
