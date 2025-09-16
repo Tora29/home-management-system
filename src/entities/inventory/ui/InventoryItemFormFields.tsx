@@ -81,7 +81,7 @@ export function InventoryItemFormFields({
             数量
             <Field.RequiredIndicator />
           </Field.Label>
-          <Input name="quantity" type="number" step="1" placeholder="1" />
+          <Input name="quantity" type="number" min="0" step="1" placeholder="1" />
           <Field.ErrorText>{errors?.quantity}</Field.ErrorText>
         </Field.Root>
       </GridItem>

@@ -21,11 +21,7 @@ type Props = {
 /**
  * 在庫アイテム登録ページのコンテンツ
  */
-export function InventoryRegisterPageContent({
-  categories,
-  units,
-  locations,
-}: Props): React.ReactElement {
+export function InventoryRegister({ categories, units, locations }: Props): React.ReactElement {
   const [state, formAction, isPending] = useActionState(createItemAction, null)
 
   return (
