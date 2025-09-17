@@ -1,4 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { ZodError } from 'zod'
+
+import { ITEM_ERROR } from '@/shared/consts/errorMessage'
+import { prisma } from '@/shared/lib/prisma'
+
 import {
   createItemAction,
   processFormData,
@@ -6,8 +11,8 @@ import {
   saveItem,
   recordItemHistory,
 } from './actions'
-import { ITEM_ERROR } from '@/shared/consts/errorMessage'
-import { ZodError } from 'zod'
+
+import type { ItemHistory } from '@prisma/client'
 
 // Prismaのモック
 vi.mock('@/shared/lib/prisma', () => ({
@@ -37,8 +42,6 @@ vi.mock('next/dist/client/components/redirect-error', () => ({
     return error?.message?.startsWith('NEXT_REDIRECT')
   }),
 }))
-
-import { prisma } from '@/shared/lib/prisma'
 
 describe('processFormData', () => {
   describe('FormDataが提供された時', () => {
@@ -166,7 +169,14 @@ describe('saveItem', () => {
 
       const mockItem = {
         id: 'item-123',
-        ...validatedData,
+        name: validatedData.name,
+        description: validatedData.description,
+        quantity: validatedData.quantity,
+        unit: validatedData.unit,
+        location: validatedData.location,
+        barcode: validatedData.barcode,
+        notes: validatedData.notes,
+        categoryId: validatedData.categoryId,
         createdAt: new Date(),
         updatedAt: new Date(),
       }
@@ -220,18 +230,20 @@ describe('recordItemHistory', () => {
         updatedAt: new Date(),
       }
 
-      const mockHistory = {
+      const mockHistory: ItemHistory = {
         id: 'history-123',
         itemId: item.id,
         action: 'ADD',
         quantity: item.quantity,
         unit: item.unit,
-        afterValue: item.quantity,
         reason: 'Initial registration',
+        notes: null,
+        beforeValue: null,
+        afterValue: item.quantity,
         createdAt: new Date(),
       }
 
-      vi.mocked(prisma.itemHistory.create).mockResolvedValue(mockHistory as any)
+      vi.mocked(prisma.itemHistory.create).mockResolvedValue(mockHistory)
 
       const result = await recordItemHistory(item)
 

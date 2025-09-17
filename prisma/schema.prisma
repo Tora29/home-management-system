@@ -73,15 +73,9 @@ model Item {
   description   String?
   quantity      Float
   unit          String
-  minimumStock  Float?
-  maximumStock  Float?
   location      String?
-  expiryDate    DateTime?
   barcode       String?
   notes         String?
-  imageUrl      String?
-  isActive      Boolean   @default(true)
-  deletedAt     DateTime?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
@@ -90,11 +84,8 @@ model Item {
   category      Category  @relation(fields: [categoryId], references: [id])
   shoppingItems ShoppingListItem[]
   histories     ItemHistory[]
-  alerts        Alert[]
 
   @@index([categoryId])
-  @@index([expiryDate])
-  @@index([deletedAt])
   @@map("items")
 }
 
@@ -120,30 +111,6 @@ model ShoppingListItem {
   @@index([itemId])
   @@index([isChecked])
   @@map("shopping_list_items")
-}
-
-// ================================
-// アラート設定
-// ================================
-model Alert {
-  id                  String   @id @default(cuid())
-  type                String   // "LOW_STOCK" | "EXPIRY" | "OVERSTOCK"
-  isEnabled           Boolean  @default(true)
-  thresholdValue      Float?   // 在庫数または日数
-  message             String?
-  lastTriggeredAt     DateTime?
-  acknowledgedAt      DateTime?
-  createdAt           DateTime @default(now())
-  updatedAt           DateTime @updatedAt
-
-  // Relations
-  itemId              String
-  item                Item     @relation(fields: [itemId], references: [id])
-
-  @@index([itemId])
-  @@index([type])
-  @@index([isEnabled])
-  @@map("alerts")
 }
 
 // ================================

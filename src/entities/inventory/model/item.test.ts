@@ -1,6 +1,8 @@
 import { describe, it, expect } from 'vitest'
-import { CreateItemSchema, UpdateItemSchema, UpdateQuantitySchema } from './item'
+
 import { ITEM_ERROR } from '@/shared/consts/errorMessage'
+
+import { CreateItemSchema, UpdateItemSchema, UpdateQuantitySchema } from './item'
 
 describe('CreateItemSchema', () => {
   describe('有効なデータの場合', () => {
@@ -120,7 +122,7 @@ describe('CreateItemSchema', () => {
       it('数値に変換される', () => {
         const data = {
           name: 'アイテム',
-          quantity: '5' as any,
+          quantity: '5' as unknown as number,
           unit: 'piece',
           location: 'storage',
           categoryId: 'cat-123',
@@ -303,7 +305,7 @@ describe('UpdateQuantitySchema', () => {
     describe('文字列の数量が提供された時', () => {
       it('数値に変換される', () => {
         const updateData = {
-          quantity: '50' as any,
+          quantity: '50' as unknown as number,
           reason: '調整',
         }
 
