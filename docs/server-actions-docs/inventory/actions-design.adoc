@@ -3,7 +3,7 @@
 :toclevels: 3
 :sectnums:
 :icons: font
-:source-highlighter: rouge
+:source-highlighter: highlightjs
 
 == 概要
 
