@@ -1,11 +1,7 @@
 /**
- *
+ * 保管場所の型定義
  */
-export type Location = {
-  id: string
+export interface Location {
   name: string
   displayName: string
-  description?: string | null
-  sortOrder: number
-  isActive: boolean
 }

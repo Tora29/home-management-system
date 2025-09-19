@@ -15,9 +15,11 @@ vi.mock('../api/actions', () => ({
 }))
 
 // useActionStateのモック - 各テストでオーバーライドします
-const mockUseActionState = vi.fn((action, initialState) => {
-  return [initialState, action, false]
-})
+const mockUseActionState = vi.fn(
+  (action: unknown, initialState: unknown): [unknown, unknown, boolean] => {
+    return [initialState, action, false]
+  },
+)
 
 vi.mock('react', async () => {
   const actual = await vi.importActual('react')
@@ -26,7 +28,7 @@ vi.mock('react', async () => {
     useActionState: (
       action: (state: unknown, formData: FormData) => Promise<unknown>,
       initialState: unknown,
-    ) => mockUseActionState(action, initialState),
+    ): [unknown, unknown, boolean] => mockUseActionState(action, initialState),
   }
 })
 
@@ -62,9 +64,11 @@ describe('InventoryRegister', () => {
   beforeEach(() => {
     // 各テストの前にモックをデフォルト状態にリセット
     mockUseActionState.mockReset()
-    mockUseActionState.mockImplementation((action, initialState) => {
-      return [initialState, action, false]
-    })
+    mockUseActionState.mockImplementation(
+      (action: unknown, initialState: unknown): [unknown, unknown, boolean] => {
+        return [initialState, action, false]
+      },
+    )
   })
 
   it('見出し付きの登録フォームをレンダーできる', () => {

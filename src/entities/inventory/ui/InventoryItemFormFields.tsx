@@ -102,7 +102,7 @@ export function InventoryItemFormFields({
               <Select.Positioner>
                 <Select.Content>
                   {units.map((unit) => (
-                    <Select.Item key={unit.id} item={unit.name}>
+                    <Select.Item key={unit.name} item={unit.name}>
                       <Select.ItemText>{unit.displayName}</Select.ItemText>
                       <Select.ItemIndicator />
                     </Select.Item>
@@ -161,7 +161,7 @@ export function InventoryItemFormFields({
               <Select.Positioner>
                 <Select.Content>
                   {locations.map((location) => (
-                    <Select.Item key={location.id} item={location.name}>
+                    <Select.Item key={location.name} item={location.name}>
                       <Select.ItemText>{location.displayName}</Select.ItemText>
                       <Select.ItemIndicator />
                     </Select.Item>

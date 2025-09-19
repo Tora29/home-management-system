@@ -1,10 +1,7 @@
 /**
- *
+ * 単位の型定義
  */
-export type Unit = {
-  id: string
+export interface Unit {
   name: string
   displayName: string
-  sortOrder: number
-  isActive: boolean
 }
