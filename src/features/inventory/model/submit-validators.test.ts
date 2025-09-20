@@ -4,7 +4,7 @@ import {
   createItemSchema as CreateItemSchema,
   updateItemSchema as UpdateItemSchema,
   updateQuantitySchema as UpdateQuantitySchema,
-} from '@/features/inventory/model/validators'
+} from '@/features/inventory/model/submit-validators'
 import { ITEM_ERROR } from '@/shared/consts/errorMessage'
 
 describe('CreateItemSchema', () => {

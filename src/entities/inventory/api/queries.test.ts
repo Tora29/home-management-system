@@ -5,7 +5,7 @@
 
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 
-import { itemRepository } from '@/features/inventory/repository/repository'
+import { itemRepository } from '@/features/inventory/repository/submit'
 
 import { getInventoryItemById, getInventoryItems } from './queries'
 

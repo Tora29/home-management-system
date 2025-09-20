@@ -3,7 +3,7 @@ import { describe, it, expect } from 'vitest'
 
 import { render, screen } from '@/shared/test/test-utils'
 
-import { InventoryItemFormFields } from './InventoryItemFormFields'
+import { ItemFormFields } from './ItemFormFields'
 
 import type { Category, Unit, Location } from '../model'
 
@@ -37,15 +37,11 @@ const mockLocations: Location[] = [
   { id: 'loc-3', name: 'bathroom', displayName: 'バスルーム', sortOrder: 3, isActive: true },
 ]
 
-describe('InventoryItemFormFields', () => {
+describe('ItemFormFields', () => {
   it('すべてのフォームフィールドをレンダーできる', () => {
     render(
       <form>
-        <InventoryItemFormFields
-          categories={mockCategories}
-          units={mockUnits}
-          locations={mockLocations}
-        />
+        <ItemFormFields categories={mockCategories} units={mockUnits} locations={mockLocations} />
       </form>,
     )
 
@@ -65,11 +61,7 @@ describe('InventoryItemFormFields', () => {
   it('フォーム送信用の正しいname属性でフォームフィールドをレンダーできる', () => {
     render(
       <form>
-        <InventoryItemFormFields
-          categories={mockCategories}
-          units={mockUnits}
-          locations={mockLocations}
-        />
+        <ItemFormFields categories={mockCategories} units={mockUnits} locations={mockLocations} />
       </form>,
     )
 
@@ -92,7 +84,7 @@ describe('InventoryItemFormFields', () => {
 
     render(
       <form>
-        <InventoryItemFormFields
+        <ItemFormFields
           categories={mockCategories}
           units={mockUnits}
           locations={mockLocations}
@@ -111,11 +103,7 @@ describe('InventoryItemFormFields', () => {
   it('入力フィールドのプレースホルダーをレンダーできる', () => {
     render(
       <form>
-        <InventoryItemFormFields
-          categories={mockCategories}
-          units={mockUnits}
-          locations={mockLocations}
-        />
+        <ItemFormFields categories={mockCategories} units={mockUnits} locations={mockLocations} />
       </form>,
     )
 
@@ -129,11 +117,7 @@ describe('InventoryItemFormFields', () => {
   it('セレクトボックスのプレースホルダーをレンダーできる', () => {
     render(
       <form>
-        <InventoryItemFormFields
-          categories={mockCategories}
-          units={mockUnits}
-          locations={mockLocations}
-        />
+        <ItemFormFields categories={mockCategories} units={mockUnits} locations={mockLocations} />
       </form>,
     )
 
@@ -147,11 +131,7 @@ describe('InventoryItemFormFields', () => {
 
     render(
       <form>
-        <InventoryItemFormFields
-          categories={mockCategories}
-          units={mockUnits}
-          locations={mockLocations}
-        />
+        <ItemFormFields categories={mockCategories} units={mockUnits} locations={mockLocations} />
       </form>,
     )
 
@@ -176,11 +156,7 @@ describe('InventoryItemFormFields', () => {
 
     render(
       <form>
-        <InventoryItemFormFields
-          categories={mockCategories}
-          units={mockUnits}
-          locations={mockLocations}
-        />
+        <ItemFormFields categories={mockCategories} units={mockUnits} locations={mockLocations} />
       </form>,
     )
 
@@ -195,11 +171,7 @@ describe('InventoryItemFormFields', () => {
   it('数量入力にminとstep属性を設定する', () => {
     render(
       <form>
-        <InventoryItemFormFields
-          categories={mockCategories}
-          units={mockUnits}
-          locations={mockLocations}
-        />
+        <ItemFormFields categories={mockCategories} units={mockUnits} locations={mockLocations} />
       </form>,
     )
 
@@ -213,7 +185,7 @@ describe('InventoryItemFormFields', () => {
   it('空のカテゴリ、単位、保管場所でレンダーできる', () => {
     render(
       <form>
-        <InventoryItemFormFields categories={[]} units={[]} locations={[]} />
+        <ItemFormFields categories={[]} units={[]} locations={[]} />
       </form>,
     )
 
@@ -225,11 +197,7 @@ describe('InventoryItemFormFields', () => {
   it('errors propが提供されない場合はエラーを表示しない', () => {
     render(
       <form>
-        <InventoryItemFormFields
-          categories={mockCategories}
-          units={mockUnits}
-          locations={mockLocations}
-        />
+        <ItemFormFields categories={mockCategories} units={mockUnits} locations={mockLocations} />
       </form>,
     )
 
@@ -241,11 +209,7 @@ describe('InventoryItemFormFields', () => {
   it('必須フィールドに必須インジケーターをレンダーする', () => {
     render(
       <form>
-        <InventoryItemFormFields
-          categories={mockCategories}
-          units={mockUnits}
-          locations={mockLocations}
-        />
+        <ItemFormFields categories={mockCategories} units={mockUnits} locations={mockLocations} />
       </form>,
     )
 

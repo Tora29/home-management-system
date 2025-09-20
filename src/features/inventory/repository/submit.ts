@@ -1,6 +1,6 @@
 import { prisma } from '@/shared/lib/prisma'
 
-import type { CreateItemInput, UpdateItemInput } from '../model/validators'
+import type { CreateItemInput, UpdateItemInput } from '../model/submit-validators'
 import type { Item, ItemHistory, Prisma } from '@prisma/client'
 
 /**

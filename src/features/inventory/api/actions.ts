@@ -8,7 +8,7 @@ import { ZodError } from 'zod'
 
 import { ITEM_ERROR } from '@/shared/consts/errorMessage'
 
-import { createItemSchema } from '../model/validators'
+import { createItemSchema } from '../model/submit-validators'
 import { createInventoryItem } from '../service/create-item'
 
 /**
@@ -30,8 +30,8 @@ export async function createItemAction(
       name: String(rawInput.name || ''),
       description: rawInput.description ? String(rawInput.description) : undefined,
       quantity: rawInput.quantity,
-      unit: String(rawInput.unit || ''),
-      location: String(rawInput.location || ''),
+      unitId: String(rawInput.unitId || ''),
+      locationId: rawInput.locationId ? String(rawInput.locationId) : undefined,
       barcode: rawInput.barcode ? String(rawInput.barcode) : undefined,
       notes: rawInput.notes ? String(rawInput.notes) : undefined,
       categoryId: String(rawInput.categoryId || ''),

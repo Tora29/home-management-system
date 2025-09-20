@@ -5,7 +5,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 
 import { render, screen } from '@/shared/test/test-utils'
 
-import { InventoryRegister } from './InventoryRegister'
+import { Register } from './Register'
 
 import type { Category, Unit, Location } from '@/entities/inventory/model'
 
@@ -60,7 +60,7 @@ const mockLocations: Location[] = [
   { id: 'loc-2', name: 'kitchen', displayName: 'キッチン', sortOrder: 2, isActive: true },
 ]
 
-describe('InventoryRegister', () => {
+describe('Register', () => {
   beforeEach(() => {
     // 各テストの前にモックをデフォルト状態にリセット
     mockUseActionState.mockReset()
@@ -72,20 +72,16 @@ describe('InventoryRegister', () => {
   })
 
   it('見出し付きの登録フォームをレンダーできる', () => {
-    render(
-      <InventoryRegister categories={mockCategories} units={mockUnits} locations={mockLocations} />,
-    )
+    render(<Register categories={mockCategories} units={mockUnits} locations={mockLocations} />)
 
     expect(screen.getByRole('heading', { name: '在庫アイテム登録' })).toBeInTheDocument()
     expect(screen.getByText('新しい在庫アイテムを登録します')).toBeInTheDocument()
   })
 
   it('フォームフィールドをレンダーできる', () => {
-    render(
-      <InventoryRegister categories={mockCategories} units={mockUnits} locations={mockLocations} />,
-    )
+    render(<Register categories={mockCategories} units={mockUnits} locations={mockLocations} />)
 
-    // InventoryItemFormFieldsからのフォームフィールドを確認
+    // ItemFormFieldsからのフォームフィールドを確認
     expect(screen.getByLabelText(/アイテム名/)).toBeInTheDocument()
     expect(screen.getByLabelText(/数量/)).toBeInTheDocument()
     expect(screen.getByText(/単位/)).toBeInTheDocument()
@@ -94,9 +90,7 @@ describe('InventoryRegister', () => {
   })
 
   it('アクションボタンをレンダーできる', () => {
-    render(
-      <InventoryRegister categories={mockCategories} units={mockUnits} locations={mockLocations} />,
-    )
+    render(<Register categories={mockCategories} units={mockUnits} locations={mockLocations} />)
 
     const cancelButton = screen.getByRole('button', { name: 'キャンセル' })
     const submitButton = screen.getByRole('button', { name: '登録' })
@@ -106,9 +100,7 @@ describe('InventoryRegister', () => {
   })
 
   it('キャンセルリンクは/inventoryにナビゲートする', () => {
-    render(
-      <InventoryRegister categories={mockCategories} units={mockUnits} locations={mockLocations} />,
-    )
+    render(<Register categories={mockCategories} units={mockUnits} locations={mockLocations} />)
 
     const cancelLink = screen.getByRole('link')
     expect(cancelLink).toHaveAttribute('href', '/inventory')
@@ -116,17 +108,15 @@ describe('InventoryRegister', () => {
 
   it('フォームにnoValidate属性がある', () => {
     const { container } = render(
-      <InventoryRegister categories={mockCategories} units={mockUnits} locations={mockLocations} />,
+      <Register categories={mockCategories} units={mockUnits} locations={mockLocations} />,
     )
 
     const form = container.querySelector('form')
     expect(form).toHaveAttribute('noValidate')
   })
 
-  it('InventoryItemFormFieldsにpropsを渡す', () => {
-    render(
-      <InventoryRegister categories={mockCategories} units={mockUnits} locations={mockLocations} />,
-    )
+  it('ItemFormFieldsにpropsを渡す', () => {
+    render(<Register categories={mockCategories} units={mockUnits} locations={mockLocations} />)
 
     // セレクトオプションがレンダーされるか確認してカテゴリが渡されていることを検証
     expect(screen.getAllByText('選択してください')).toHaveLength(3)
@@ -135,9 +125,7 @@ describe('InventoryRegister', () => {
   it('フォーム送信中はローディング状態を表示する', () => {
     mockUseActionState.mockReturnValue([null, vi.fn(), true]) // isPending = true
 
-    render(
-      <InventoryRegister categories={mockCategories} units={mockUnits} locations={mockLocations} />,
-    )
+    render(<Register categories={mockCategories} units={mockUnits} locations={mockLocations} />)
 
     const submitButton = screen.getByRole('button', { name: '登録中...' })
     expect(submitButton).toBeInTheDocument()
@@ -152,9 +140,7 @@ describe('InventoryRegister', () => {
 
     mockUseActionState.mockReturnValue([{ errors }, vi.fn(), false])
 
-    render(
-      <InventoryRegister categories={mockCategories} units={mockUnits} locations={mockLocations} />,
-    )
+    render(<Register categories={mockCategories} units={mockUnits} locations={mockLocations} />)
 
     expect(screen.getByText('アイテム名は必須です')).toBeInTheDocument()
     expect(screen.getByText('数量は0以上である必要があります')).toBeInTheDocument()
@@ -167,9 +153,7 @@ describe('InventoryRegister', () => {
 
     const user = userEvent.setup()
 
-    render(
-      <InventoryRegister categories={mockCategories} units={mockUnits} locations={mockLocations} />,
-    )
+    render(<Register categories={mockCategories} units={mockUnits} locations={mockLocations} />)
 
     const submitButton = screen.getByRole('button', { name: '登録' })
 
@@ -184,7 +168,7 @@ describe('InventoryRegister', () => {
 
   it('レスポンシブレイアウトクラスを持つ', () => {
     const { container } = render(
-      <InventoryRegister categories={mockCategories} units={mockUnits} locations={mockLocations} />,
+      <Register categories={mockCategories} units={mockUnits} locations={mockLocations} />,
     )
 
     // コンポーネントがエラーなくレンダーされ、期待される要素を含むことを確認
@@ -193,7 +177,7 @@ describe('InventoryRegister', () => {
   })
 
   it('空のマスタデータでレンダーできる', () => {
-    render(<InventoryRegister categories={[]} units={[]} locations={[]} />)
+    render(<Register categories={[]} units={[]} locations={[]} />)
 
     expect(screen.getByRole('heading', { name: '在庫アイテム登録' })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: '登録' })).toBeInTheDocument()

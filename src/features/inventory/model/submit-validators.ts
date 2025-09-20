@@ -11,8 +11,8 @@ export const createItemSchema = z.object({
   quantity: z.coerce
     .number({ message: ITEM_ERROR.QUANTITY_REQUIRED })
     .min(0, ITEM_ERROR.QUANTITY_MIN),
-  unit: z.string().min(1, ITEM_ERROR.UNIT_REQUIRED),
-  location: z.string().min(1, ITEM_ERROR.LOCATION_REQUIRED),
+  unitId: z.string().min(1, ITEM_ERROR.UNIT_REQUIRED),
+  locationId: z.string().optional(),
   barcode: z.string().optional(),
   notes: z.string().optional(),
   categoryId: z.string().min(1, ITEM_ERROR.CATEGORY_REQUIRED),
@@ -25,8 +25,8 @@ export const updateItemSchema = z.object({
   name: z.string().min(1, ITEM_ERROR.NAME_REQUIRED).optional(),
   description: z.string().nullable().optional(),
   quantity: z.coerce.number().min(0, ITEM_ERROR.QUANTITY_MIN).optional(),
-  unit: z.string().min(1, ITEM_ERROR.UNIT_REQUIRED).optional(),
-  location: z.string().nullable().optional(),
+  unitId: z.string().min(1, ITEM_ERROR.UNIT_REQUIRED).optional(),
+  locationId: z.string().nullable().optional(),
   barcode: z.string().nullable().optional(),
   notes: z.string().nullable().optional(),
   categoryId: z.string().min(1, ITEM_ERROR.CATEGORY_REQUIRED).optional(),

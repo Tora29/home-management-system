@@ -1,7 +1,7 @@
 'use server'
 
 import { getMasterData } from '@/features/inventory/api/queries'
-import { InventoryRegister } from '@/features/inventory/ui/InventoryRegister'
+import { Register } from '@/features/inventory/ui/Register'
 
 /**
  * 在庫アイテム登録ページ
@@ -10,5 +10,5 @@ export default async function InventoryRegisterPage(): Promise<React.ReactElemen
   // マスターデータを取得
   const { categories, units, locations } = await getMasterData()
 
-  return <InventoryRegister categories={categories} units={units} locations={locations} />
+  return <Register categories={categories} units={units} locations={locations} />
 }

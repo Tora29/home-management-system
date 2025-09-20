@@ -2,7 +2,15 @@
  * エンティティの型定義をエクスポート
  * Zodスキーマはfeaturesの model/validators.ts に移動
  */
-export type { Item, ItemHistory, ItemWithCategory } from './item'
-export type { Category } from './category'
-export type { Unit } from './unit'
-export type { Location } from './location'
+
+// Prismaから直接エクスポート
+export type { Item, ItemHistory, Category, Unit, Location } from '@prisma/client'
+
+// UIコンポーネントのProps型定義
+export type {
+  PaginationProps,
+  SearchBarProps,
+  TableProps,
+  FiltersProps,
+  ItemFormFieldsProps,
+} from './ui-props'

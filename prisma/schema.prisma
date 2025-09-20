@@ -45,6 +45,10 @@ model Unit {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
+  // Relations
+  items       Item[]
+  histories   ItemHistory[]
+
   @@map("units")
 }
 
@@ -61,6 +65,9 @@ model Location {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
+  // Relations
+  items       Item[]
+
   @@map("locations")
 }
 
@@ -72,8 +79,6 @@ model Item {
   name          String
   description   String?
   quantity      Float
-  unit          String
-  location      String?
   barcode       String?
   notes         String?
   createdAt     DateTime  @default(now())
@@ -82,10 +87,16 @@ model Item {
   // Relations
   categoryId    String
   category      Category  @relation(fields: [categoryId], references: [id])
+  unitId        String
+  unit          Unit      @relation(fields: [unitId], references: [id])
+  locationId    String?
+  location      Location? @relation(fields: [locationId], references: [id])
   shoppingItems ShoppingListItem[]
   histories     ItemHistory[]
 
   @@index([categoryId])
+  @@index([unitId])
+  @@index([locationId])
   @@map("items")
 }
 
@@ -120,7 +131,6 @@ model ItemHistory {
   id          String   @id @default(cuid())
   action      String   // "ADD" | "REMOVE" | "UPDATE" | "ADJUST"
   quantity    Float
-  unit        String
   reason      String?
   notes       String?
   beforeValue Float?
@@ -130,8 +140,11 @@ model ItemHistory {
   // Relations
   itemId      String
   item        Item     @relation(fields: [itemId], references: [id])
+  unitId      String
+  unit        Unit     @relation(fields: [unitId], references: [id])
 
   @@index([itemId])
+  @@index([unitId])
   @@index([action])
   @@index([createdAt])
   @@map("item_histories")

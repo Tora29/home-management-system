@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 import { Box, Button, Container, Grid, GridItem, Heading, Text } from '@chakra-ui/react'
 
-import { InventoryItemFormFields } from '@/entities/inventory/ui/InventoryItemFormFields'
+import { ItemFormFields } from '@/entities/inventory/ui/ItemFormFields'
 
 import { createItemAction } from '../api/actions'
 
@@ -21,7 +21,7 @@ type Props = {
 /**
  * 在庫アイテム登録ページのコンテンツ
  */
-export function InventoryRegister({ categories, units, locations }: Props): React.ReactElement {
+export function Register({ categories, units, locations }: Props): React.ReactElement {
   const [state, formAction, isPending] = useActionState(createItemAction, null)
 
   return (
@@ -40,7 +40,7 @@ export function InventoryRegister({ categories, units, locations }: Props): Reac
 
           {/* フォームフィールドエリア - モバイル:フル幅, デスクトップ:中央8カラム */}
           <GridItem colSpan={{ base: 12, lg: 8 }} colStart={{ lg: 3 }}>
-            <InventoryItemFormFields
+            <ItemFormFields
               categories={categories}
               units={units}
               locations={locations}

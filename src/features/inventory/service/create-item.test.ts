@@ -2,11 +2,11 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 
 import { prisma } from '@/shared/lib/prisma'
 
-import { itemRepository, itemHistoryRepository } from '../repository/repository'
+import { itemRepository, itemHistoryRepository } from '../repository/submit'
 
 import { createInventoryItem, updateInventoryQuantity } from './create-item'
 
-import type { CreateItemInput } from '../model/validators'
+import type { CreateItemInput } from '../model/submit-validators'
 import type { Item, Prisma, ItemHistory, Category } from '@prisma/client'
 
 vi.mock('@/shared/lib/prisma', () => ({

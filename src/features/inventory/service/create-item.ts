@@ -2,9 +2,9 @@
 
 import { prisma } from '@/shared/lib/prisma'
 
-import { itemRepository, itemHistoryRepository } from '../repository/repository'
+import { itemRepository, itemHistoryRepository } from '../repository/submit'
 
-import type { CreateItemInput } from '../model/validators'
+import type { CreateItemInput } from '../model/submit-validators'
 import type { Item } from '@prisma/client'
 
 /**
@@ -36,7 +36,7 @@ export async function createInventoryItem(
         itemId: item.id,
         action: 'ADD',
         quantity: item.quantity,
-        unit: item.unit,
+        unitId: item.unitId,
         afterValue: item.quantity,
         reason: 'Initial creation',
       },
@@ -76,7 +76,7 @@ export async function updateInventoryQuantity(
         itemId,
         action: 'UPDATE',
         quantity: newQuantity - currentItem.quantity,
-        unit: currentItem.unit,
+        unitId: currentItem.unitId,
         beforeValue: currentItem.quantity,
         afterValue: newQuantity,
         reason,

@@ -11,27 +11,17 @@ import {
   createListCollection,
 } from '@chakra-ui/react'
 
-import type { Category, Unit, Location } from '../model'
-
-/**
- * 在庫アイテムフォームフィールド群のProps
- */
-type Props = {
-  categories: Category[]
-  units: Unit[]
-  locations: Location[]
-  errors?: Record<string, string>
-}
+import type { ItemFormFieldsProps } from '../model'
 
 /**
  * 在庫アイテムの全フォームフィールド統合コンポーネント
  */
-export function InventoryItemFormFields({
+export function ItemFormFields({
   categories,
   units,
   locations,
   errors,
-}: Props): React.ReactElement {
+}: ItemFormFieldsProps): React.ReactElement {
   const categoryCollection = createListCollection({
     items: categories.map((category) => ({
       label: category.name,
@@ -42,14 +32,14 @@ export function InventoryItemFormFields({
   const unitCollection = createListCollection({
     items: units.map((unit) => ({
       label: unit.displayName,
-      value: unit.name,
+      value: unit.id,
     })),
   })
 
   const locationCollection = createListCollection({
     items: locations.map((location) => ({
       label: location.displayName,
-      value: location.name,
+      value: location.id,
     })),
   })
 
@@ -87,12 +77,12 @@ export function InventoryItemFormFields({
       </GridItem>
 
       <GridItem colSpan={{ base: 2, md: 1 }}>
-        <Field.Root required invalid={!!errors?.unit}>
+        <Field.Root required invalid={!!errors?.unitId}>
           <Field.Label>
             単位
             <Field.RequiredIndicator />
           </Field.Label>
-          <Select.Root name="unit" collection={unitCollection}>
+          <Select.Root name="unitId" collection={unitCollection}>
             <Select.HiddenSelect />
             <Select.Trigger>
               <Select.ValueText placeholder="選択してください" />
@@ -101,17 +91,19 @@ export function InventoryItemFormFields({
             <Portal>
               <Select.Positioner>
                 <Select.Content>
-                  {units.map((unit) => (
-                    <Select.Item key={unit.name} item={unit.name}>
-                      <Select.ItemText>{unit.displayName}</Select.ItemText>
-                      <Select.ItemIndicator />
-                    </Select.Item>
-                  ))}
+                  <Select.ItemGroup>
+                    {unitCollection.items.map((unit) => (
+                      <Select.Item key={unit.value} item={unit}>
+                        <Select.ItemText>{unit.label}</Select.ItemText>
+                        <Select.ItemIndicator />
+                      </Select.Item>
+                    ))}
+                  </Select.ItemGroup>
                 </Select.Content>
               </Select.Positioner>
             </Portal>
           </Select.Root>
-          <Field.ErrorText>{errors?.unit}</Field.ErrorText>
+          <Field.ErrorText>{errors?.unitId}</Field.ErrorText>
         </Field.Root>
       </GridItem>
 
@@ -131,12 +123,14 @@ export function InventoryItemFormFields({
             <Portal>
               <Select.Positioner>
                 <Select.Content>
-                  {categories.map((category) => (
-                    <Select.Item key={category.id} item={category.id}>
-                      <Select.ItemText>{category.name}</Select.ItemText>
-                      <Select.ItemIndicator />
-                    </Select.Item>
-                  ))}
+                  <Select.ItemGroup>
+                    {categoryCollection.items.map((category) => (
+                      <Select.Item key={category.value} item={category}>
+                        <Select.ItemText>{category.label}</Select.ItemText>
+                        <Select.ItemIndicator />
+                      </Select.Item>
+                    ))}
+                  </Select.ItemGroup>
                 </Select.Content>
               </Select.Positioner>
             </Portal>
@@ -146,12 +140,9 @@ export function InventoryItemFormFields({
       </GridItem>
 
       <GridItem colSpan={{ base: 2, md: 1 }}>
-        <Field.Root required invalid={!!errors?.location}>
-          <Field.Label>
-            保管場所
-            <Field.RequiredIndicator />
-          </Field.Label>
-          <Select.Root name="location" collection={locationCollection}>
+        <Field.Root invalid={!!errors?.locationId}>
+          <Field.Label>保管場所</Field.Label>
+          <Select.Root name="locationId" collection={locationCollection}>
             <Select.HiddenSelect />
             <Select.Trigger>
               <Select.ValueText placeholder="選択してください" />
@@ -160,17 +151,19 @@ export function InventoryItemFormFields({
             <Portal>
               <Select.Positioner>
                 <Select.Content>
-                  {locations.map((location) => (
-                    <Select.Item key={location.name} item={location.name}>
-                      <Select.ItemText>{location.displayName}</Select.ItemText>
-                      <Select.ItemIndicator />
-                    </Select.Item>
-                  ))}
+                  <Select.ItemGroup>
+                    {locationCollection.items.map((location) => (
+                      <Select.Item key={location.value} item={location}>
+                        <Select.ItemText>{location.label}</Select.ItemText>
+                        <Select.ItemIndicator />
+                      </Select.Item>
+                    ))}
+                  </Select.ItemGroup>
                 </Select.Content>
               </Select.Positioner>
             </Portal>
           </Select.Root>
-          <Field.ErrorText>{errors?.location}</Field.ErrorText>
+          <Field.ErrorText>{errors?.locationId}</Field.ErrorText>
         </Field.Root>
       </GridItem>
 

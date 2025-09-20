@@ -2,9 +2,9 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 
 import { prisma } from '@/shared/lib/prisma'
 
-import { itemRepository, itemHistoryRepository } from './repository'
+import { itemRepository, itemHistoryRepository } from './submit'
 
-import type { CreateItemInput, UpdateItemInput } from '../model/validators'
+import type { CreateItemInput, UpdateItemInput } from '../model/submit-validators'
 import type { Item, ItemHistory, Prisma } from '@prisma/client'
 
 // Prismaクライアントのモック
