@@ -24,6 +24,7 @@ npm run test         # Vitestでテスト実行
 ## アーキテクチャ
 
 アーキテクチャの詳細は **nextjs-fsd-architect エージェント** に委譲します。
+
 - レイヤー構造: `app → features → entities → shared`
 - Server/Client境界、Server Actionsの配置などの詳細ルールはエージェントを参照
 
@@ -35,6 +36,7 @@ npm run test         # Vitestでテスト実行
    - アーキテクチャ違反がないかレビュー
 
 2. **コード品質チェック**
+
    ```bash
    npm run lint
    npm run format

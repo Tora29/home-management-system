@@ -8,8 +8,9 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Home Management System',
-  description: '家庭内在庫管理システム',
+  title: '個人資産管理システム',
+  description:
+    '給与・資産情報を一元管理し、収支の可視化と将来の資産形成をサポートするWebアプリケーション',
 }
 
 /**

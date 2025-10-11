@@ -1,12 +1,12 @@
 'use client'
 
-import { ChakraProvider, defaultSystem } from '@chakra-ui/react'
-
-// import { theme } from './chakra-theme'
+import { ChakraProvider } from '@chakra-ui/react'
+import { system } from '@/shared/theme'
 
 /**
  * Chakra UIプロバイダーコンポーネント
+ * カスタムテーマ（Silver Color Palettes）を適用
  */
 export function Providers({ children }: { children: React.ReactNode }): React.ReactElement {
-  return <ChakraProvider value={defaultSystem}>{children}</ChakraProvider>
+  return <ChakraProvider value={system}>{children}</ChakraProvider>
 }

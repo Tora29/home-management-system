@@ -63,6 +63,11 @@ color: blue
    - スキーマから型を抽出し、型定義とバリデーションルールの整合性を保証
    - 単一の情報源（Single Source of Truth）として管理されていることを確認
 
+7. **Result型パターンの適用**
+   - Server Actionsは必ず `Result<T, E>` または `ActionState<T>` を返す
+   - 例外を投げずに、常に成功/失敗を表すDiscriminated Unionを返す
+   - zodの `safeParse()` と統合して型安全なエラーハンドリングを実現
+
 ## 徹底すべきアーキテクチャルール
 
 ### レイヤー構造
@@ -107,16 +112,93 @@ src/
 
    - メリット: 型定義とバリデーションの整合性保証、メンテナンスの容易さ
 
-4. **フォーム処理**
-   - サーバーサイド: `<form action={serverAction}>`
-   - クライアントサイド: `<form onSubmit={handleSubmit}>`
-   - 混在させない: `action` はServer Actions、`onSubmit` はクライアント関数
+4. **Result型パターン（Server Actions）**
+   - `shared/types/action.ts` でResult型とActionState型を定義
+   - Server Actionsは必ず `ActionState<T>` を返す
+   - 例外を投げない（try/catchの中でも必ずreturn）
 
-5. **インポートルール**
+   ```tsx
+   // shared/types/action.ts
+   export type Result<T, E = string> = { success: true; data: T } | { success: false; error: E }
+
+   export type ActionState<T = void> = Result<
+     T,
+     {
+       fieldErrors?: Record<string, string[]>
+       formError?: string[]
+     }
+   > & {
+     formData?: Record<string, string>
+     timestamp?: number
+   }
+   ```
+
+   ```tsx
+   // features/salary/api/actions.ts
+   'use server'
+
+   export async function createSalary(
+     prevState: ActionState<SalaryStatement>,
+     formData: FormData
+   ): Promise<ActionState<SalaryStatement>> {
+     const parsed = schema.safeParse(...)
+
+     if (!parsed.success) {
+       return {
+         success: false,
+         error: { fieldErrors: parsed.error.flatten().fieldErrors },
+         formData: rawData as Record<string, string>,
+         timestamp: Date.now(),
+       }
+     }
+
+     try {
+       const data = await db.create(...)
+       return { success: true, data, timestamp: Date.now() }
+     } catch (error) {
+       return {
+         success: false,
+         error: { formError: ['エラーが発生しました'] },
+         formData: rawData as Record<string, string>,
+         timestamp: Date.now(),
+       }
+     }
+   }
+   ```
+
+5. **フォーム処理（useActionState + Result型）**
+   - React 19の `useActionState` を使用
+   - Result型で型安全なエラーハンドリング
+   - フォームリセット防止のため `formData` を保持
+
+   ```tsx
+   // features/salary/ui/Form.tsx
+   'use client'
+
+   const [state, formAction, isPending] = useActionState(createSalary, {
+     success: false,
+     error: {},
+   })
+
+   // TypeScriptのDiscriminated Unionにより型安全
+   if (state.success) {
+     console.log(state.data.id) // ✅ 型保証
+   } else {
+     console.log(state.error) // ✅ 型保証
+   }
+   ```
+
+6. **インポートルール**
    - ✅ `features/ui` は `entities/ui` と `shared/components/ui` からインポート可能
    - ✅ 軽量プリミティブ（Button、Input）は `shared` から直接インポート可能
    - ❌ 同一レイヤー内のクロスインポート不可
    - ❌ 下位から上位レイヤーへのインポート不可
+
+7. **認証**
+   - すべてのビジネスデータに `userId` を紐付け
+   - Server Actions内で必ず認証チェック (`getCurrentUser()`)
+   - Row Level Security: データ取得時は必ず `userId` でフィルタリング
+   - 詳細は `docs/rules/authentication.md` を参照
 
 ## レビュープロセス
 
@@ -138,12 +220,24 @@ src/
    - Client ComponentsがServer Componentsをインポートしていないか確認
    - Server ActionsがClient Componentsから適切に分離されているか検証
 
-4. **フォーム実装のレビュー**
-   - `action` 属性がServer Actionsを使用しているか確認
-   - `onSubmit` ハンドラがClient Componentsに配置されているか検証
-   - 適切なエラーハンドリングとバリデーションが実装されているか確認
+4. **Result型パターンの検証**
+   - Server Actionsが `ActionState<T>` を返しているか確認
+   - 例外を投げずに、常にResult型を返しているか検証
+   - zodの `safeParse()` の結果を適切にハンドリングしているか確認
+   - `formData` と `timestamp` が適切に設定されているか確認
 
-5. **実行時安全性の評価**
+5. **フォーム実装のレビュー**
+   - `useActionState` を使用しているか確認
+   - Result型で型安全なエラーハンドリングが実装されているか検証
+   - `defaultValue` でフォームリセットを防いでいるか確認
+   - `isPending` 状態を活用しているか確認
+
+6. **認証の検証**
+   - Server Actions内で `getCurrentUser()` を呼んでいるか確認
+   - データ取得時に `userId` でフィルタリングしているか検証
+   - すべてのビジネスデータに `userId` が紐付けられているか確認
+
+7. **実行時安全性の評価**
    - 潜在的なハイドレーションエラーをチェック
    - Server Actionsでの適切なエラーハンドリングを検証
    - ミューテーション後に再検証が呼び出されているか確認
@@ -187,19 +281,24 @@ src/
 
 1. レイヤー依存関係違反（最も重大）
 2. Server/Client境界違反
-3. Server Action配置エラー
-4. インポートパスの問題
-5. フォーム処理パターンの問題
-6. スタイルと規約の問題（最も軽微）
+3. 認証・セキュリティ問題（Row Level Security違反）
+4. Result型パターン違反（例外を投げている）
+5. Server Action配置エラー
+6. インポートパスの問題
+7. フォーム処理パターンの問題
+8. スタイルと規約の問題（最も軽微）
 
 ## 専門領域
 
 - Feature-Sliced Designアーキテクチャパターン
 - Next.js 15 App RouterとServer/Client Components
 - Server Actionsとデータフェッチング戦略
+- Result型パターンとDiscriminated Unionによるエラーハンドリング
+- React 19の `useActionState` フック
 - TypeScript strict modeの型安全性とZodバリデーション
 - スケーラブルなプロジェクト構造設計
 - 依存関係管理と循環依存の解決
+- Auth.js v5による認証とRow Level Security
 
 ---
 
