@@ -1,0 +1,5 @@
+/* Chakra UIのCSSリセットを使用するため、カスタムリセットは最小限に */
+html,
+body {
+  height: 100%;
+}

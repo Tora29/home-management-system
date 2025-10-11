@@ -1,0 +1,151 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_PRISMA_URL")
+}
+
+// ================================
+// カテゴリマスタ
+// ================================
+model Category {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  icon        String?
+  color       String?
+  sortOrder   Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  items       Item[]
+
+  @@map("categories")
+}
+
+// ================================
+// 単位マスタ
+// ================================
+model Unit {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  displayName String
+  sortOrder   Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  items       Item[]
+  histories   ItemHistory[]
+
+  @@map("units")
+}
+
+// ================================
+// 保管場所マスタ
+// ================================
+model Location {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  displayName String
+  description String?
+  sortOrder   Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  items       Item[]
+
+  @@map("locations")
+}
+
+// ================================
+// 在庫アイテム
+// ================================
+model Item {
+  id            String    @id @default(cuid())
+  name          String
+  description   String?
+  quantity      Float
+  barcode       String?
+  notes         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Relations
+  categoryId    String
+  category      Category  @relation(fields: [categoryId], references: [id])
+  unitId        String
+  unit          Unit      @relation(fields: [unitId], references: [id])
+  locationId    String?
+  location      Location? @relation(fields: [locationId], references: [id])
+  shoppingItems ShoppingListItem[]
+  histories     ItemHistory[]
+
+  @@index([categoryId])
+  @@index([unitId])
+  @@index([locationId])
+  @@map("items")
+}
+
+// ================================
+// 買い物リスト
+// ================================
+model ShoppingListItem {
+  id          String   @id @default(cuid())
+  name        String
+  quantity    Float
+  unit        String
+  priority    Int      @default(0) // 0: 低, 1: 中, 2: 高
+  notes       String?
+  isChecked   Boolean  @default(false)
+  checkedAt   DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  itemId      String?
+  item        Item?    @relation(fields: [itemId], references: [id])
+
+  @@index([itemId])
+  @@index([isChecked])
+  @@map("shopping_list_items")
+}
+
+// ================================
+// 在庫履歴
+// ================================
+model ItemHistory {
+  id          String   @id @default(cuid())
+  action      String   // "ADD" | "REMOVE" | "UPDATE" | "ADJUST"
+  quantity    Float
+  reason      String?
+  notes       String?
+  beforeValue Float?
+  afterValue  Float
+  createdAt   DateTime @default(now())
+
+  // Relations
+  itemId      String
+  item        Item     @relation(fields: [itemId], references: [id])
+  unitId      String
+  unit        Unit     @relation(fields: [unitId], references: [id])
+
+  @@index([itemId])
+  @@index([unitId])
+  @@index([action])
+  @@index([createdAt])
+  @@map("item_histories")
+}
