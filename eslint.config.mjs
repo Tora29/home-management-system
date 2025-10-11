@@ -124,15 +124,50 @@ const eslintConfig = [
         },
       ],
       '@typescript-eslint/no-non-null-assertion': 'warn',
+      '@typescript-eslint/no-floating-promises': 'error',
+      '@typescript-eslint/no-misused-promises': 'error',
+      '@typescript-eslint/await-thenable': 'error',
+      '@typescript-eslint/promise-function-async': 'error',
+      '@typescript-eslint/require-await': 'warn',
+      '@typescript-eslint/no-unnecessary-condition': 'warn',
+      '@typescript-eslint/prefer-nullish-coalescing': 'error',
+      '@typescript-eslint/prefer-optional-chain': 'error',
+      '@typescript-eslint/strict-boolean-expressions': 'error',
+      '@typescript-eslint/switch-exhaustiveness-check': 'error',
+      '@typescript-eslint/naming-convention': [
+        'error',
+        { selector: 'variable', format: ['camelCase', 'UPPER_CASE', 'PascalCase'] },
+        { selector: 'function', format: ['camelCase', 'PascalCase'] },
+        { selector: 'typeLike', format: ['PascalCase'] },
+      ],
 
       // ========== 一般的な品質ルール ==========
       'prefer-const': 'error',
       'no-var': 'error',
-      'no-console': ['warn', { allow: ['warn', 'error'] }],
+      'no-console': 'error',
       'no-debugger': 'error',
       'no-alert': 'error',
       eqeqeq: ['error', 'always'],
       curly: ['error', 'all'],
+      complexity: ['error', 10],
+      'max-depth': ['error', 3],
+      'max-lines-per-function': ['warn', 100],
+      'max-params': ['error', 4],
+      'max-nested-callbacks': ['error', 3],
+      'no-magic-numbers': [
+        'warn',
+        {
+          ignore: [0, 1, -1],
+          ignoreArrayIndexes: true,
+          ignoreDefaultValues: true,
+        },
+      ],
+      'no-duplicate-imports': 'error',
+      'no-return-await': 'error',
+      'require-await': 'error',
+      'prefer-template': 'error',
+      'prefer-arrow-callback': 'error',
+      'arrow-body-style': ['error', 'as-needed'],
 
       // ========== セキュリティ関連 ==========
       'no-eval': 'error',
@@ -141,6 +176,10 @@ const eslintConfig = [
       'no-script-url': 'error',
 
       // ========== import関連 ==========
+      'import/no-duplicates': 'error',
+      'import/no-cycle': 'error',
+      'import/no-self-import': 'error',
+      'import/no-useless-path-segments': 'error',
       'import/order': [
         'error',
         {

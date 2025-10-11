@@ -1,5 +1,5 @@
 {
-  "name": "home-management-system",
+  "name": "salary-management-system",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -15,25 +15,20 @@
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:studio": "prisma studio",
-    "prisma:push": "prisma db push",
-    "seed:categories": "tsx scripts/seed-categories.ts",
-    "seed:masters": "tsx scripts/seed-masters.ts"
+    "prisma:push": "prisma db push"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
-    "@chakra-ui/icons": "^2.2.4",
     "@chakra-ui/react": "^3.26.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@prisma/client": "^6.16.1",
-    "@types/qrcode": "^1.5.5",
     "@vercel/postgres": "^0.10.0",
     "framer-motion": "^12.23.12",
     "next": "15.5.2",
     "prisma": "^6.16.1",
-    "qrcode": "^1.5.4",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-icons": "^5.5.0",
