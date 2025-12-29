@@ -5,9 +5,7 @@ type UserFormProps = {
 export function UserForm({ isSubmitting }: UserFormProps) {
   return (
     <section className="mb-8 rounded-lg border border-gray-200 bg-white p-6">
-      <h2 className="mb-4 text-lg font-semibold text-gray-900">
-        ユーザー作成
-      </h2>
+      <h2 className="mb-4 text-lg font-semibold text-gray-900">ユーザー作成</h2>
       <form method="post" className="flex flex-wrap gap-4">
         <input type="hidden" name="intent" value="create" />
         <input

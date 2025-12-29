@@ -229,10 +229,10 @@ loader/action  ビジネス層   データ層
 
 ## テスト戦略
 
-| レイヤー | テスト種類 | モック対象 |
-|---------|-----------|-----------|
-| route.tsx | E2E | なし |
-| Service | Unit | Repository |
+| レイヤー   | テスト種類  | モック対象   |
+| ---------- | ----------- | ------------ |
+| route.tsx  | E2E         | なし         |
+| Service    | Unit        | Repository   |
 | Repository | Integration | なし（実DB） |
 
 ---

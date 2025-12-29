@@ -23,5 +23,3 @@ tmp-ssr/
 # Claude commands (test only)
 .claude/commands/00-test-init.md
 
-# Template development
-package.json

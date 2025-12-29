@@ -8,7 +8,6 @@
     "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
-
   /* ===== Human Interface Guidelines カラーシステム ===== */
   /* System Colors */
   --color-hig-blue: #007aff;
@@ -35,7 +34,6 @@
   --color-hig-background: #ffffff;
   --color-hig-secondary-background: #f2f2f7;
   --color-hig-separator: rgba(60, 60, 67, 0.29);
-
 }
 
 html,

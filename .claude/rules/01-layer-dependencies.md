@@ -18,9 +18,9 @@ route.tsx → server.ts → services/* → schema.ts
 
 ## 各レイヤーの責務
 
-| ファイル     | 責務                           | 詳細ルール                     |
-| ------------ | ------------------------------ | ------------------------------ |
-| `route.tsx`  | UI 描画、loader/action の公開  | -                              |
+| ファイル     | 責務                           | 詳細ルール                         |
+| ------------ | ------------------------------ | ---------------------------------- |
+| `route.tsx`  | UI 描画、loader/action の公開  | -                                  |
 | `server.ts`  | DB アクセス、外部 API 呼び出し | `.claude/rules/02-server-ssr.md`   |
 | `services/*` | ビジネスロジック（純粋関数）   | `.claude/rules/03-services-ssr.md` |
 | `schema.ts`  | zod スキーマ、型定義           | `.claude/rules/04-schema-ssr.md`   |

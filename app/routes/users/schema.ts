@@ -10,13 +10,17 @@ export const userSchema = z.object({
 });
 
 export const createUserSchema = z.object({
-  email: z.email({ message: ERROR_MESSAGES.email.invalid }).min(1, ERROR_MESSAGES.email.required),
+  email: z
+    .email({ message: ERROR_MESSAGES.email.invalid })
+    .min(1, ERROR_MESSAGES.email.required),
   name: z.string().max(100, ERROR_MESSAGES.name.maxLength).optional(),
 });
 
 export const updateUserSchema = z.object({
   id: z.string().min(1, ERROR_MESSAGES.id.required),
-  email: z.email({ message: ERROR_MESSAGES.email.invalid }).min(1, ERROR_MESSAGES.email.required),
+  email: z
+    .email({ message: ERROR_MESSAGES.email.invalid })
+    .min(1, ERROR_MESSAGES.email.required),
   name: z.string().max(100, ERROR_MESSAGES.name.maxLength).optional(),
 });
 

@@ -62,9 +62,7 @@ export function UserListItem({
   return (
     <div className="flex items-center justify-between">
       <div>
-        <p className="font-medium text-gray-900">
-          {user.name || "(名前なし)"}
-        </p>
+        <p className="font-medium text-gray-900">{user.name || "(名前なし)"}</p>
         <p className="text-sm text-gray-500">{user.email}</p>
         <p className="text-xs text-gray-400">
           作成日: {new Date(user.createdAt).toLocaleDateString("ja-JP")}

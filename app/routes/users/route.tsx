@@ -52,7 +52,10 @@ export async function action({ request }: Route.ActionArgs) {
     }
   } catch (error) {
     if (error instanceof ValidationError) {
-      return data({ error: error.message, details: error.details }, { status: 400 });
+      return data(
+        { error: error.message, details: error.details },
+        { status: 400 }
+      );
     }
     if (error instanceof DuplicateEmailError) {
       return data({ error: error.message }, { status: 400 });
@@ -60,7 +63,10 @@ export async function action({ request }: Route.ActionArgs) {
     if (error instanceof Error) {
       return data({ error: error.message }, { status: 400 });
     }
-    return data({ error: ERROR_MESSAGES.general.invalidRequest }, { status: 500 });
+    return data(
+      { error: ERROR_MESSAGES.general.invalidRequest },
+      { status: 500 }
+    );
   }
 }
 
