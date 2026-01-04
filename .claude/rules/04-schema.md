@@ -1,3 +1,7 @@
+---
+paths: "**/schema.ts"
+---
+
 # schema.ts ルール
 
 ## 概要
@@ -92,7 +96,7 @@ import { ERROR_MESSAGES } from "./errorMessage";
 
 // NG - 他のレイヤーに依存しない
 import { prisma } from "~/shared/lib/db.server";
-import { calculateSummary } from "./services/calculation";
+import { calculateSummary } from "./service/calculation";
 ```
 
 ---
@@ -151,4 +155,4 @@ Props 型が少ない場合（1-2 個）は、コンポーネントファイル�
 - `loaderData as SomeType` のような型アサーションは使用しない
 - 同じ型を zod と手動で二重定義しない
 - 表示用の型（loaderData の要素型）を zod で定義しない
-- 他のレイヤー（server.ts, services/）に依存しない
+- 他のレイヤー（service/, repository/）に依存しない

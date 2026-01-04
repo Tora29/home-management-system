@@ -1,3 +1,7 @@
+---
+paths: "**/*.tsx"
+---
+
 # Web 標準ルール（React Router v7）
 
 > **Note**: このルールは SSR/SSG 共通です。SSG では `action` を使用せず、`clientAction` または `useFetcher` で API サーバーを呼び出してください。

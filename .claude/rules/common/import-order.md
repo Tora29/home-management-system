@@ -14,7 +14,7 @@
 
 1. **React・外部ライブラリ** - React、React Router、lucide など
 2. **型定義** - `type` imports
-3. **サーバー・ロジック** - server.ts、service.ts など
+3. **サービス・リポジトリ** - service/、repository/ など
 4. **共有コンポーネント** - `~/shared/` からの import
 5. **ローカルコンポーネント** - `./components/` からの import
 
@@ -34,8 +34,8 @@ import { FileText } from "lucide-react";
 import type { Route } from "./+types/route";
 import type { SalaryRecord } from "./schema";
 
-// サーバー・ロジック
-import { getLoaderData } from "./server";
+// サービス
+import * as userService from "./service/user.service";
 
 // 共有コンポーネント
 import { EmptyState } from "~/shared/components/EmptyState";
@@ -58,7 +58,7 @@ import { PageLayout } from "~/shared/components/PageLayout";
 import { useSearchParams } from "react-router";
 import type { Route } from "./+types/route";
 import { FileText } from "lucide-react";
-import { getLoaderData } from "./server";
+import * as userService from "./service/user.service";
 import { PageHeader } from "./components/PageHeader";
 import type { SalaryRecord } from "./schema";
 ```

@@ -101,13 +101,29 @@ export async function remove(id: string) {
 - **ビジネスロジック**を実装
 - Repository を呼び出す
 - バリデーション、エラーハンドリングを行う
+- **Result 型**で成功/失敗を表現（throw ではなく return）
 
 ```typescript
 // service/user.service.ts
 import { z } from "zod";
+
+// 型定義
+import type { FieldErrors } from "~/shared/types/result";
 import { userSchema, createUserSchema, type User } from "../schema";
+
+// リポジトリ
 import * as userRepository from "../repository/user.repository";
 
+// エラーメッセージ
+import { ERROR_MESSAGES } from "../errorMessage";
+
+// Result 型の定義
+export type CreateUserResult =
+  | { success: true; data: { user: User } }
+  | { success: false; type: "validation"; errors: FieldErrors }
+  | { success: false; type: "duplicate"; errors: FieldErrors };
+
+// 取得処理（失敗は予期しないエラーなので throw）
 export async function getUsers(): Promise<User[]> {
   const users = await userRepository.findAll();
 
@@ -131,24 +147,29 @@ export async function getUserById(id: string): Promise<User | null> {
   return result.data;
 }
 
-export async function createUser(input: unknown): Promise<User> {
+// 作成処理（Result 型で返す）
+export async function createUser(input: unknown): Promise<CreateUserResult> {
   const result = createUserSchema.safeParse(input);
   if (!result.success) {
-    const error = new Error("バリデーションエラー") as Error & {
-      details: Record<string, string[]>;
+    return {
+      success: false,
+      type: "validation",
+      errors: result.error.flatten().fieldErrors as FieldErrors,
     };
-    error.details = result.error.flatten().fieldErrors;
-    throw error;
   }
 
-  try {
-    return (await userRepository.create(result.data)) as User;
-  } catch (error) {
-    if (error instanceof Error && error.message.includes("Unique constraint")) {
-      throw new Error("このメールアドレスは既に登録されています");
-    }
-    throw error;
+  // 重複チェック
+  const existing = await userRepository.findByEmail(result.data.email);
+  if (existing) {
+    return {
+      success: false,
+      type: "duplicate",
+      errors: { email: [ERROR_MESSAGES.email.duplicate] },
+    };
   }
+
+  const user = (await userRepository.create(result.data)) as User;
+  return { success: true, data: { user } };
 }
 // ... updateUser, deleteUser も同様
 ```
@@ -157,39 +178,37 @@ export async function createUser(input: unknown): Promise<User> {
 
 - `route.tsx` は loader/action と UI のみに
 - Service を呼び出してビジネスロジックを実行
+- **Result 型**の結果を `switch` で分岐
 
 ```typescript
 // route.tsx
 import type { Route } from "./+types/route";
-import { data } from "react-router";
+import { data, redirect } from "react-router";
 import * as userService from "./service/user.service";
 
 export async function loader(_args: Route.LoaderArgs) {
-  try {
-    const users = await userService.getUsers();
-    return { users };
-  } catch (error) {
-    throw data("データの取得に失敗しました", { status: 500 });
-  }
+  // 取得処理の失敗は予期しないエラーなので ErrorBoundary へ
+  const users = await userService.getUsers();
+  return { users };
 }
 
 export async function action({ request }: Route.ActionArgs) {
   const formData = await request.formData();
-  const rawData = Object.fromEntries(formData);
 
-  try {
-    await userService.createUser(rawData);
-    return { success: true };
-  } catch (error) {
-    if (error instanceof Error) {
-      if (error.message === "バリデーションエラー") {
-        const err = error as Error & { details: Record<string, string[]> };
-        return { error: error.message, details: err.details };
-      }
-      return { error: error.message };
+  const result = await userService.createUser({
+    email: formData.get("email"),
+    name: formData.get("name"),
+  });
+
+  if (!result.success) {
+    switch (result.type) {
+      case "validation":
+      case "duplicate":
+        return data({ errors: result.errors }, { status: 400 });
     }
-    throw data("作成に失敗しました", { status: 500 });
   }
+
+  return redirect("/users");
 }
 
 export default function UsersPage({ loaderData }: Route.ComponentProps) {

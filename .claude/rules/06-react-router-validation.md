@@ -1,3 +1,7 @@
+---
+paths: "**/routes/**/route.tsx"
+---
+
 # React Router バリデーションルール
 
 > zod の詳細な使い方は `.claude/rules/05-zod-validation-ssr.md` を参照
@@ -292,10 +296,10 @@ export const SYSTEM_ERROR_MESSAGES = {
 ```
 
 ```typescript
-// routes/todo/server.ts
+// routes/todo/route.tsx または service/todo.service.ts
 import { SYSTEM_ERROR_MESSAGES } from "~/shared/errorMessage";
 
-throw data(SYSTEM_ERROR_MESSAGES.invalidDataFormat, { status: 500 });
+throw new Error(SYSTEM_ERROR_MESSAGES.invalidDataFormat);
 ```
 
 ### DB 検証用メッセージ

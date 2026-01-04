@@ -17,23 +17,32 @@ description: "Vitest のベストプラクティスに基づいたテストフ�
 
 ### ルート固有のコード
 
+ルート直下の `__tests__/` フォルダにすべてのテストを統合する。サブディレクトリ（`service/`, `repository/`, `components/`）のテストも `__tests__/` 配下にミラー構造で配置する。
+
 ```
 app/routes/dashboard/
 ├── __tests__/
-│   ├── server.test.ts       # server.ts のテスト
+│   ├── route.test.tsx           # route.tsx のテスト
+│   ├── schema.test.ts           # schema.ts のテスト
+│   ├── service/
+│   │   ├── calculation.test.ts  # service/calculation.ts のテスト
+│   │   └── transform.test.ts    # service/transform.ts のテスト
 │   └── components/
-│       └── SummaryCard.test.tsx
-├── server.ts
+│       └── SummaryCard.test.tsx # components/SummaryCard.tsx のテスト
+├── route.tsx
 ├── schema.ts
-├── services/
-│   ├── __tests__/
-│   │   ├── calculation.test.ts  # calculation.ts のテスト
-│   │   └── transform.test.ts    # transform.ts のテスト
+├── service/
 │   ├── calculation.ts
 │   └── transform.ts
 └── components/
     └── SummaryCard.tsx
 ```
+
+**理由**:
+
+- テストが一箇所にまとまる
+- ディレクトリ構造がシンプル
+- テスト対象との対応関係が明確
 
 ### 共有モジュール
 
@@ -272,6 +281,143 @@ describe("ErrorBoundary", () => {
 });
 ```
 
+### React Router v7 action テスト
+
+action 関数をテストする場合、`data()` 関数の戻り値に注意が必要。テスト環境では `Response` オブジェクトではなく `DataWithResponseInit` オブジェクトを返す。
+
+```typescript
+import { describe, it, expect, vi, beforeEach } from "vitest";
+
+// サービスのモック
+vi.mock("../service/user.service", () => ({
+  createUser: vi.fn(),
+}));
+
+import { createUser } from "../service/user.service";
+import { action } from "../route";
+
+describe("action", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  function createFormData(data: Record<string, string>): FormData {
+    const formData = new FormData();
+    Object.entries(data).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
+    return formData;
+  }
+
+  function createRequest(formData: FormData): Request {
+    return new Request("http://localhost/users", {
+      method: "POST",
+      body: formData,
+    });
+  }
+
+  it("バリデーションエラー時にエラーを含むレスポンスを返す", async () => {
+    expect.assertions(2);
+
+    vi.mocked(createUser).mockResolvedValue({
+      success: false,
+      type: "validation",
+      errors: { email: ["メールアドレスを入力してください"] },
+    });
+
+    const formData = createFormData({ email: "" });
+    const request = createRequest(formData);
+
+    // data() は DataWithResponseInit オブジェクトを返す
+    // - result.init.status: ステータスコード
+    // - result.data: レスポンスボディ
+    const result = (await action({
+      request,
+      params: {},
+      context: {},
+    })) as { data: { errors: { email: string[] } }; init: { status: number } };
+
+    expect(result.init.status).toBe(400);
+    expect(result.data.errors.email).toContain(
+      "メールアドレスを入力してください"
+    );
+  });
+});
+```
+
+**重要**: `data({ errors }, { status: 400 })` の戻り値は `Response` ではないため、`result.status` や `result.json()` は使用できない。代わりに `result.init.status` と `result.data` を使用する。
+
+### Router コンテキストが必要なコンポーネントテスト
+
+`useActionData()` や `useSearchParams()` を使用するコンポーネントは、`createMockComponentProps` ヘルパーではなく `createMemoryRouter` + `RouterProvider` でテストする必要がある。
+
+```typescript
+import { describe, it, expect, vi, beforeEach } from "vitest";
+import { render, screen } from "@testing-library/react";
+import { createMemoryRouter, RouterProvider } from "react-router";
+
+// サービスのモック
+vi.mock("../service/auth.service", () => ({
+  login: vi.fn(),
+}));
+
+import LoginPage, { action } from "../route";
+
+describe("LoginPage コンポーネント", () => {
+  // useActionData() を使用するため、Router コンテキストが必要
+  function renderWithRouter(
+    initialEntries: string[] = ["/login"],
+    actionData?: Record<string, unknown>
+  ) {
+    const routes = [
+      {
+        path: "/login",
+        element: <LoginPage />,
+        action: () => actionData ?? null,
+      },
+      {
+        path: "/",
+        element: <div>Home</div>,
+      },
+    ];
+
+    const router = createMemoryRouter(routes, {
+      initialEntries,
+    });
+
+    return render(<RouterProvider router={router} />);
+  }
+
+  it("タイトルが表示される", async () => {
+    expect.assertions(1);
+
+    renderWithRouter();
+
+    expect(
+      await screen.findByRole("heading", { name: "ログイン", level: 1 })
+    ).toBeInTheDocument();
+  });
+
+  it("クエリパラメータに応じたメッセージが表示される", async () => {
+    expect.assertions(1);
+
+    // useSearchParams() のテスト
+    renderWithRouter(["/login?reset=success"]);
+
+    expect(
+      await screen.findByText("パスワードが変更されました。")
+    ).toBeInTheDocument();
+  });
+});
+```
+
+**使い分け**:
+
+| フック使用状況                             | テスト方法                              |
+| ------------------------------------------ | --------------------------------------- |
+| なし（純粋なコンポーネント）               | `createMockComponentProps` ヘルパー     |
+| `useActionData()` / `useSearchParams()` 等 | `createMemoryRouter` + `RouterProvider` |
+
 ### 非同期 UI テスト（waitFor / findBy\*）
 
 非同期で更新される UI をテストする場合、`waitFor` または `findBy*` クエリを使用する。
@@ -484,16 +630,19 @@ npx vitest run --coverage app/routes/dashboard/
    - Glob で対象ディレクトリ内の全ファイルを取得（`**/*.ts`, `**/*.tsx`）
    - `__tests__/` ディレクトリ内のテストファイルを取得
    - テスト対象ファイルとテストファイルを照合し、テストがないファイルをリストアップ
-   - 照合ルール:
-     - `server.ts` → `__tests__/server.test.ts`
-     - `services/calculation.ts` → `services/__tests__/calculation.test.ts`
-     - `services/transform.ts` → `services/__tests__/transform.test.ts`
+   - 照合ルール（ルート直下の `__tests__/` に統合）:
+     - `route.tsx` → `__tests__/route.test.tsx`
+     - `schema.ts` → `__tests__/schema.test.ts`
+     - `service/calculation.ts` → `__tests__/service/calculation.test.ts`
+     - `service/transform.ts` → `__tests__/service/transform.test.ts`
+     - `repository/user.repository.ts` → `__tests__/repository/user.repository.test.ts`
      - `components/Foo.tsx` → `__tests__/components/Foo.test.tsx`
    - 未テストファイルの一覧をユーザーに提示し、テスト生成対象を確認
 
 3. **テストファイルの配置を決定**
-   - コロケーション方式: テスト対象ディレクトリ内の `__tests__/` フォルダに配置
-   - 例: `app/routes/dashboard/services/calculation.ts` → `app/routes/dashboard/services/__tests__/calculation.test.ts`
+   - コロケーション方式: ルート直下の `__tests__/` フォルダに配置
+   - サブディレクトリのテストは `__tests__/` 配下にミラー構造で配置
+   - 例: `app/routes/dashboard/service/calculation.ts` → `app/routes/dashboard/__tests__/service/calculation.test.ts`
 
 4. **テスト対象のコードを読み取る**
    - 関数のシグネチャ、入出力、依存関係を把握
