@@ -46,7 +46,7 @@
 - アイコン: `.claude/rules/common/icon-usage.md`
 - import 整理: `.claude/rules/common/import-order.md`
 - Web 標準: `.claude/rules/common/web-standards.md`
-- デザイン: `.claude/skills/human-interface-guidelines/SKILL.md`
+- デザイン: `.claude/skills/cyberpunk-design-system/SKILL.md`
 - コメントルール: ソースコード上のコメントは日本語で記述する
 - 事実と推論を分けること
 - 公式ドキュメントのリンクを示すこと
