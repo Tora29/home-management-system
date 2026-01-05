@@ -44,3 +44,562 @@ body {
     color-scheme: dark;
   }
 }
+
+/* ===== Cyberpunk Design System ===== */
+
+/* 背景ライトの点滅アニメーション */
+@keyframes flicker-1 {
+  0%,
+  100% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes flicker-2 {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  30% {
+    opacity: 0.5;
+  }
+  70% {
+    opacity: 0.1;
+  }
+}
+
+@keyframes flicker-3 {
+  0%,
+  100% {
+    opacity: 0.15;
+  }
+  40% {
+    opacity: 0.3;
+  }
+  80% {
+    opacity: 0.5;
+  }
+}
+
+.cyberpunk-flicker-1 {
+  animation: flicker-1 4s ease-in-out infinite;
+}
+.cyberpunk-flicker-2 {
+  animation: flicker-2 5s ease-in-out infinite;
+}
+.cyberpunk-flicker-3 {
+  animation: flicker-3 6s ease-in-out infinite;
+}
+.cyberpunk-flicker-4 {
+  animation: flicker-1 7s ease-in-out infinite 1s;
+}
+.cyberpunk-flicker-5 {
+  animation: flicker-2 4.5s ease-in-out infinite 0.5s;
+}
+.cyberpunk-flicker-6 {
+  animation: flicker-3 5.5s ease-in-out infinite 2s;
+}
+
+/* 汎用グローアニメーション（ゆっくり明滅） */
+@keyframes glow-slow {
+  0%,
+  100% {
+    opacity: 0.05;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.1);
+  }
+}
+
+.cyberpunk-glow-slow {
+  animation: glow-slow 12s ease-in-out infinite;
+}
+
+/* サイバーパンク共通背景 */
+.cyberpunk-bg {
+  background-color: #0a0a12;
+  background-image:
+    linear-gradient(rgba(42, 42, 68, 0.3) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(42, 42, 68, 0.3) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* スキャンライン効果 */
+.cyberpunk-scanlines {
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.1) 2px,
+    rgba(0, 0, 0, 0.1) 4px
+  );
+}
+
+/* ===== 浮遊発光体（パーティクル）アニメーション ===== */
+
+/* 浮遊パスアニメーション */
+@keyframes cyberpunk-float-1 {
+  0%,
+  100% {
+    top: 15%;
+    left: 20%;
+  }
+  18% {
+    top: 70%;
+    left: 35%;
+  }
+  35% {
+    top: 40%;
+    left: 75%;
+  }
+  52% {
+    top: 80%;
+    left: 55%;
+  }
+  70% {
+    top: 25%;
+    left: 85%;
+  }
+  85% {
+    top: 60%;
+    left: 15%;
+  }
+}
+
+@keyframes cyberpunk-float-2 {
+  0%,
+  100% {
+    top: 75%;
+    left: 70%;
+  }
+  15% {
+    top: 30%;
+    left: 45%;
+  }
+  32% {
+    top: 55%;
+    left: 20%;
+  }
+  48% {
+    top: 20%;
+    left: 60%;
+  }
+  65% {
+    top: 65%;
+    left: 85%;
+  }
+  82% {
+    top: 45%;
+    left: 30%;
+  }
+}
+
+@keyframes cyberpunk-float-3 {
+  0%,
+  100% {
+    top: 50%;
+    left: 50%;
+  }
+  20% {
+    top: 20%;
+    left: 25%;
+  }
+  40% {
+    top: 75%;
+    left: 70%;
+  }
+  60% {
+    top: 35%;
+    left: 80%;
+  }
+  80% {
+    top: 85%;
+    left: 40%;
+  }
+}
+
+@keyframes cyberpunk-float-4 {
+  0%,
+  100% {
+    top: 25%;
+    left: 80%;
+  }
+  22% {
+    top: 65%;
+    left: 25%;
+  }
+  45% {
+    top: 15%;
+    left: 55%;
+  }
+  68% {
+    top: 70%;
+    left: 75%;
+  }
+  88% {
+    top: 40%;
+    left: 15%;
+  }
+}
+
+@keyframes cyberpunk-float-5 {
+  0%,
+  100% {
+    top: 80%;
+    left: 30%;
+  }
+  17% {
+    top: 35%;
+    left: 70%;
+  }
+  38% {
+    top: 60%;
+    left: 45%;
+  }
+  55% {
+    top: 20%;
+    left: 20%;
+  }
+  75% {
+    top: 50%;
+    left: 85%;
+  }
+  90% {
+    top: 75%;
+    left: 60%;
+  }
+}
+
+@keyframes cyberpunk-float-6 {
+  0%,
+  100% {
+    top: 40%;
+    left: 15%;
+  }
+  25% {
+    top: 70%;
+    left: 65%;
+  }
+  50% {
+    top: 30%;
+    left: 40%;
+  }
+  75% {
+    top: 55%;
+    left: 80%;
+  }
+}
+
+/* 発光体のグロー（不規則な明滅） */
+@keyframes cyberpunk-orbit-glow-1 {
+  0%,
+  18%,
+  100% {
+    opacity: 0.05;
+    transform: translate(-50%, -50%) scale(0.4);
+  }
+  5% {
+    opacity: 0.4;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  8% {
+    opacity: 0.15;
+    transform: translate(-50%, -50%) scale(0.7);
+  }
+  35%,
+  50% {
+    opacity: 0.03;
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+  42% {
+    opacity: 0.35;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  70%,
+  85% {
+    opacity: 0.04;
+    transform: translate(-50%, -50%) scale(0.35);
+  }
+  75% {
+    opacity: 0.25;
+    transform: translate(-50%, -50%) scale(0.85);
+  }
+}
+
+@keyframes cyberpunk-orbit-glow-2 {
+  0%,
+  25%,
+  100% {
+    opacity: 0.04;
+    transform: translate(-50%, -50%) scale(0.35);
+  }
+  12% {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+  15% {
+    opacity: 0.1;
+    transform: translate(-50%, -50%) scale(0.6);
+  }
+  55%,
+  70% {
+    opacity: 0.03;
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+  60% {
+    opacity: 0.45;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  85%,
+  95% {
+    opacity: 0.05;
+    transform: translate(-50%, -50%) scale(0.4);
+  }
+  90% {
+    opacity: 0.2;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+}
+
+@keyframes cyberpunk-orbit-glow-3 {
+  0%,
+  15%,
+  100% {
+    opacity: 0.03;
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+  30%,
+  45% {
+    opacity: 0.05;
+    transform: translate(-50%, -50%) scale(0.4);
+  }
+  35% {
+    opacity: 0.38;
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+  65%,
+  80% {
+    opacity: 0.04;
+    transform: translate(-50%, -50%) scale(0.35);
+  }
+  72% {
+    opacity: 0.28;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+}
+
+@keyframes cyberpunk-orbit-glow-4 {
+  0%,
+  20%,
+  100% {
+    opacity: 0.05;
+    transform: translate(-50%, -50%) scale(0.4);
+  }
+  8% {
+    opacity: 0.32;
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+  40%,
+  55% {
+    opacity: 0.03;
+    transform: translate(-50%, -50%) scale(0.3);
+  }
+  48% {
+    opacity: 0.22;
+    transform: translate(-50%, -50%) scale(0.75);
+  }
+  75%,
+  90% {
+    opacity: 0.04;
+    transform: translate(-50%, -50%) scale(0.35);
+  }
+  82% {
+    opacity: 0.42;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+/* 浮遊クラス */
+.cyberpunk-float-1 {
+  animation: cyberpunk-float-1 25s ease-in-out infinite;
+}
+.cyberpunk-float-2 {
+  animation: cyberpunk-float-2 30s ease-in-out infinite;
+}
+.cyberpunk-float-3 {
+  animation: cyberpunk-float-3 35s ease-in-out infinite;
+}
+.cyberpunk-float-4 {
+  animation: cyberpunk-float-4 28s ease-in-out infinite;
+}
+.cyberpunk-float-5 {
+  animation: cyberpunk-float-5 32s ease-in-out infinite;
+}
+.cyberpunk-float-6 {
+  animation: cyberpunk-float-6 38s ease-in-out infinite;
+}
+
+/* グロークラス */
+.cyberpunk-glow-1 {
+  animation: cyberpunk-orbit-glow-1 12s ease-in-out infinite;
+}
+.cyberpunk-glow-2 {
+  animation: cyberpunk-orbit-glow-2 15s ease-in-out infinite;
+}
+.cyberpunk-glow-3 {
+  animation: cyberpunk-orbit-glow-3 18s ease-in-out infinite;
+}
+.cyberpunk-glow-4 {
+  animation: cyberpunk-orbit-glow-4 14s ease-in-out infinite;
+}
+
+/* ===== サイバーパンク フォームコンポーネント ===== */
+
+/* ラベル */
+.cyberpunk-label {
+  display: block;
+  font-size: 10px;
+  font-family: monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #606080;
+}
+
+/* 入力フィールド */
+.cyberpunk-input {
+  width: 100%;
+  background-color: #18182a;
+  border: 1px solid #2a2a44;
+  color: #e0e0f0;
+  font-family: monospace;
+  padding: 0.75rem 1rem;
+  transition: all 0.2s;
+  clip-path: polygon(8px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 8px);
+}
+
+.cyberpunk-input::placeholder {
+  color: #606080;
+}
+
+.cyberpunk-input:focus {
+  outline: none;
+  border-color: #00f0ff;
+  box-shadow: inset 0 0 10px rgba(0, 240, 255, 0.1);
+}
+
+.cyberpunk-input-error {
+  border-color: #ff0044;
+}
+
+/* パスワード入力用（右パディング追加） */
+.cyberpunk-input-password {
+  padding-right: 3rem;
+}
+
+/* 入力フィールドのコーナーマーク */
+.cyberpunk-input-corner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-top: 1px solid #00f0ff;
+  border-left: 1px solid #00f0ff;
+  pointer-events: none;
+}
+
+/* パスワード表示切替ボタン */
+.cyberpunk-password-toggle {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0.25rem;
+  color: #606080;
+  transition: color 0.2s;
+}
+
+.cyberpunk-password-toggle:hover {
+  color: #00f0ff;
+}
+
+/* エラーメッセージ */
+.cyberpunk-error-text {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  font-family: monospace;
+  color: #ff0044;
+}
+
+.cyberpunk-error-dot {
+  width: 0.25rem;
+  height: 0.25rem;
+  border-radius: 9999px;
+  background-color: #ff0044;
+}
+
+/* 送信ボタン */
+.cyberpunk-button {
+  position: relative;
+  width: 100%;
+  background-color: rgba(0, 240, 255, 0.1);
+  border: 1px solid #00f0ff;
+  color: #00f0ff;
+  padding: 0.75rem 1.5rem;
+  font-family: monospace;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.2s;
+  clip-path: polygon(
+    10px 0%,
+    100% 0%,
+    100% calc(100% - 10px),
+    calc(100% - 10px) 100%,
+    0% 100%,
+    0% 10px
+  );
+}
+
+.cyberpunk-button:hover:not(:disabled) {
+  background-color: #00f0ff;
+  color: #0a0a12;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+}
+
+.cyberpunk-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ボタン内装飾ドット */
+.cyberpunk-button-dots {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.cyberpunk-button-dot {
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: 9999px;
+}
+
+.cyberpunk-button-dot-active {
+  background-color: #00f0ff;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.cyberpunk-button-dot-50 {
+  background-color: rgba(0, 240, 255, 0.5);
+}
+
+.cyberpunk-button-dot-30 {
+  background-color: rgba(0, 240, 255, 0.3);
+}
