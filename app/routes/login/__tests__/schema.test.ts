@@ -2,7 +2,8 @@
 import { describe, it, expect } from "vitest";
 
 // テスト対象
-import { loginSchema, userSchema } from "../schema";
+import { loginSchema } from "../schema";
+import { userSchema } from "~/shared/schema/user.schema";
 
 // エラーメッセージ
 import { AUTH_ERROR_MESSAGES } from "~/shared/errorMessage/auth";

@@ -1,10 +1,12 @@
 // 型定義
 import type { FieldErrors } from "~/shared/types/result";
+import { resetPasswordSchema } from "../schema";
+
+// 共有スキーマ
 import {
   passwordResetTokenSchema,
   passwordResetTokenWithUserSchema,
-  resetPasswordSchema,
-} from "../schema";
+} from "~/shared/schema/password-reset-token.schema";
 
 // リポジトリ
 import * as passwordResetTokenRepository from "../repository/password-reset-token.repository";

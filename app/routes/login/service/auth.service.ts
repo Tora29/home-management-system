@@ -6,7 +6,8 @@ import { z } from "zod";
 
 // 型定義
 import type { FieldErrors } from "~/shared/types/result";
-import { loginSchema, userSchema, type User } from "../schema";
+import { loginSchema } from "../schema";
+import { userSchema, type User } from "~/shared/schema/user.schema";
 
 // 共有リポジトリ
 import { findByEmail } from "~/shared/repository/user.repository";

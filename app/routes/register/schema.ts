@@ -14,9 +14,6 @@ import { AUTH_ERROR_MESSAGES } from "~/shared/errorMessage/auth";
 // ローカルエラーメッセージ
 import { ERROR_MESSAGES } from "./errorMessage";
 
-// DB検証用スキーマを再エクスポート
-export { userSchema, type User } from "~/shared/schema/user.schema";
-
 // パスワード強度スキーマ
 export const passwordStrengthSchema = z.object({
   score: z.number().min(0).max(4),

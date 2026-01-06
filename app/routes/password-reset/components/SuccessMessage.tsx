@@ -9,12 +9,12 @@ export function SuccessMessage({ resetUrl }: SuccessMessageProps) {
       role="alert"
       className="
         relative mb-6 p-4 text-sm font-mono
-        border-l-4 border-[#00ff66] bg-[#00ff66]/10 text-[#00ff66]
+        border-l-4 border-cyber-green bg-cyber-green/10 text-cyber-green
       "
     >
       {/* ステータスドット */}
       <div className="absolute top-4 right-4">
-        <div className="w-2 h-2 rounded-full bg-[#00ff66] animate-pulse" />
+        <div className="w-2 h-2 rounded-full bg-cyber-green animate-pulse" />
       </div>
       <span className="text-[10px] uppercase tracking-widest block mb-1">
         SUCCESS
@@ -26,11 +26,11 @@ export function SuccessMessage({ resetUrl }: SuccessMessageProps) {
           href={resetUrl}
           className="
             mt-3 block p-3
-            bg-[#18182a]
-            border border-[#2a2a44]
-            text-[#00f0ff] text-center text-xs
+            bg-cyber-surface-2
+            border border-cyber-border
+            text-cyber-cyan text-center text-xs
             break-all
-            hover:border-[#00f0ff]
+            hover:border-cyber-cyan
             hover:shadow-[inset_0_0_10px_rgba(0,240,255,0.1)]
             transition-all
           "
@@ -43,7 +43,9 @@ export function SuccessMessage({ resetUrl }: SuccessMessageProps) {
       )}
 
       {!resetUrl && (
-        <p className="mt-2 text-[#606080] text-xs">NO MATCHING USER FOUND</p>
+        <p className="mt-2 text-cyber-text-dim text-xs">
+          NO MATCHING USER FOUND
+        </p>
       )}
     </div>
   );

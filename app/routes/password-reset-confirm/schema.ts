@@ -10,14 +10,6 @@ import {
 // 共有エラーメッセージ
 import { AUTH_ERROR_MESSAGES } from "~/shared/errorMessage/auth";
 
-// DB検証用スキーマを再エクスポート
-export {
-  passwordResetTokenSchema,
-  passwordResetTokenWithUserSchema,
-  type PasswordResetToken,
-  type PasswordResetTokenWithUser,
-} from "~/shared/schema/password-reset-token.schema";
-
 // パスワードリセットの入力スキーマ
 export const resetPasswordSchema = z
   .object({

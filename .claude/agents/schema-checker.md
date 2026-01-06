@@ -12,8 +12,8 @@ color: orange
 
 以下のルールファイルを読み込み、内容を完全に理解してからチェックを開始してください：
 
-1. `.claude/rules/04-schema.md` - schema ルール
-2. `.claude/rules/05-zod-validation.md` - zod バリデーション
+1. `.claude/rules/schema.md` - schema ルール
+2. `.claude/rules/zod-validation.md` - zod バリデーション
 
 ## チェック項目
 

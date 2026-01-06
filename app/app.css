@@ -8,6 +8,47 @@
     "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
+  /* ===== Cyberpunk Design System カラーシステム ===== */
+  /* プライマリ - サイバーシアン */
+  --color-cyber-cyan: #00f0ff;
+  --color-cyber-cyan-dim: #00b8c4;
+
+  /* セカンダリ - ネオンマゼンタ/ピンク */
+  --color-cyber-magenta: #ff00ff;
+  --color-cyber-pink: #ff66ff;
+
+  /* アクセント - エレクトリックイエロー */
+  --color-cyber-yellow: #f0ff00;
+  --color-cyber-yellow-dim: #c4d400;
+
+  /* ステータス */
+  --color-cyber-green: #00ff66;
+  --color-cyber-orange: #ff6600;
+  --color-cyber-orange-bright: #ff8800;
+  --color-cyber-red: #ff0044;
+  --color-cyber-yellow-medium: #ffcc00;
+
+  /* ダークベース */
+  --color-cyber-dark: #0a0a12;
+  --color-cyber-darker: #050508;
+  --color-cyber-surface: #10101a;
+  --color-cyber-surface-2: #18182a;
+  --color-cyber-border: #2a2a44;
+  --color-cyber-border-dim: #1a1a2e;
+
+  /* テキスト */
+  --color-cyber-text: #e0e0f0;
+  --color-cyber-text-dim: #606080;
+  --color-cyber-text-bright: #ffffff;
+
+  /* シャドウ（Tailwindで使用） */
+  --shadow-neon-cyan:
+    0 0 10px rgba(0, 240, 255, 0.6), 0 0 30px rgba(0, 240, 255, 0.3);
+  --shadow-neon-magenta:
+    0 0 10px rgba(255, 0, 255, 0.6), 0 0 30px rgba(255, 0, 255, 0.3);
+  --shadow-neon-yellow:
+    0 0 10px rgba(240, 255, 0, 0.6), 0 0 30px rgba(240, 255, 0, 0.3);
+
   /* ===== Human Interface Guidelines カラーシステム ===== */
   /* System Colors */
   --color-hig-blue: #007aff;

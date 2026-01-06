@@ -18,12 +18,12 @@ route.tsx → service/* → repository/* → schema.ts
 
 ## 各レイヤーの責務
 
-| ファイル       | 責務                             | 詳細ルール                       |
-| -------------- | -------------------------------- | -------------------------------- |
-| `route.tsx`    | UI 描画、loader/action の公開    | -                                |
-| `service/*`    | ビジネスロジック、バリデーション | `.claude/rules/02-service.md`    |
-| `repository/*` | DB アクセス（Prisma 操作）       | `.claude/rules/03-repository.md` |
-| `schema.ts`    | zod スキーマ、型定義             | `.claude/rules/04-schema.md`     |
+| ファイル       | 責務                             |
+| -------------- | -------------------------------- |
+| `route.tsx`    | UI 描画、loader/action の公開    |
+| `service/*`    | ビジネスロジック、バリデーション |
+| `repository/*` | DB アクセス（Prisma 操作）       |
+| `schema.ts`    | zod スキーマ、型定義             |
 
 ---
 

@@ -21,7 +21,7 @@ export function PasswordStrengthIndicator({
               ${
                 index < strength.score
                   ? `${strength.color} shadow-[0_0_8px_currentColor]`
-                  : "bg-[#2a2a44]"
+                  : "bg-cyber-border"
               }
             `}
             style={{
@@ -36,19 +36,19 @@ export function PasswordStrengthIndicator({
         <div
           className={`w-1.5 h-1.5 rounded-full ${strength.color} ${strength.score > 0 ? "animate-pulse" : ""}`}
         />
-        <p className="text-[10px] font-mono uppercase tracking-widest text-[#606080]">
+        <p className="text-[10px] font-mono uppercase tracking-widest text-cyber-text-dim">
           SECURITY LEVEL:{" "}
           <span
             className={`${
               strength.score === 0
-                ? "text-[#ff0044]"
+                ? "text-cyber-red"
                 : strength.score === 1
-                  ? "text-[#ff8800]"
+                  ? "text-cyber-orange-bright"
                   : strength.score === 2
-                    ? "text-[#ffcc00]"
+                    ? "text-cyber-yellow-medium"
                     : strength.score === 3
-                      ? "text-[#00ff66]"
-                      : "text-[#00f0ff]"
+                      ? "text-cyber-green"
+                      : "text-cyber-cyan"
             }`}
           >
             {strength.label || "N/A"}

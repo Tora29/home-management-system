@@ -70,11 +70,11 @@ export default function PasswordResetConfirmPage({
         {/* 背景の点滅ライト */}
         <div className="absolute inset-0 pointer-events-none">
           <div
-            className="absolute w-32 h-32 rounded-full bg-[#ff0044] blur-[80px] cyberpunk-flicker-1"
+            className="absolute w-32 h-32 rounded-full bg-cyber-red blur-[80px] cyberpunk-flicker-1"
             style={{ top: "10%", left: "15%" }}
           />
           <div
-            className="absolute w-28 h-28 rounded-full bg-[#ff00ff] blur-[70px] cyberpunk-flicker-3"
+            className="absolute w-28 h-28 rounded-full bg-cyber-magenta blur-[70px] cyberpunk-flicker-3"
             style={{ top: "25%", right: "20%" }}
           />
         </div>
@@ -87,7 +87,7 @@ export default function PasswordResetConfirmPage({
           className="
             relative
             w-full max-w-md
-            bg-[#10101a]
+            bg-cyber-surface
             overflow-hidden
           "
           style={{
@@ -100,78 +100,78 @@ export default function PasswordResetConfirmPage({
           {/* レッド系 - パーティクル1 */}
           <div className="cyberpunk-float-1 absolute pointer-events-none z-20">
             <div
-              className="cyberpunk-glow-1 w-6 h-6 rounded-full bg-[#ff0044]/40 blur-[10px]"
+              className="cyberpunk-glow-1 w-6 h-6 rounded-full bg-cyber-red/40 blur-[10px]"
               style={{
                 boxShadow:
                   "0 0 20px rgba(255,0,68,0.3), 0 0 40px rgba(255,0,68,0.15)",
               }}
             />
-            <div className="cyberpunk-glow-1 absolute w-14 h-14 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-[#ff0044]/08 blur-[25px]" />
+            <div className="cyberpunk-glow-1 absolute w-14 h-14 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-cyber-red/08 blur-[25px]" />
           </div>
 
           {/* レッド系 - パーティクル2 */}
           <div className="cyberpunk-float-2 absolute pointer-events-none z-20">
             <div
-              className="cyberpunk-glow-3 w-5 h-5 rounded-full bg-[#ff0044]/35 blur-[8px]"
+              className="cyberpunk-glow-3 w-5 h-5 rounded-full bg-cyber-red/35 blur"
               style={{
                 boxShadow:
                   "0 0 15px rgba(255,0,68,0.25), 0 0 30px rgba(255,0,68,0.12)",
               }}
             />
-            <div className="cyberpunk-glow-3 absolute w-12 h-12 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-[#ff0044]/06 blur-[20px]" />
+            <div className="cyberpunk-glow-3 absolute w-12 h-12 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-cyber-red/06 blur-[20px]" />
           </div>
 
           {/* レッド系 - パーティクル3 */}
           <div className="cyberpunk-float-3 absolute pointer-events-none z-20">
             <div
-              className="cyberpunk-glow-2 w-4 h-4 rounded-full bg-[#ff0044]/30 blur-[7px]"
+              className="cyberpunk-glow-2 w-4 h-4 rounded-full bg-cyber-red/30 blur-[7px]"
               style={{
                 boxShadow:
                   "0 0 12px rgba(255,0,68,0.2), 0 0 25px rgba(255,0,68,0.1)",
               }}
             />
-            <div className="cyberpunk-glow-2 absolute w-10 h-10 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-[#ff0044]/05 blur-[18px]" />
+            <div className="cyberpunk-glow-2 absolute w-10 h-10 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-cyber-red/05 blur-[18px]" />
           </div>
 
           {/* マゼンタ系 - パーティクル4 */}
           <div className="cyberpunk-float-4 absolute pointer-events-none z-20">
             <div
-              className="cyberpunk-glow-4 w-5 h-5 rounded-full bg-[#ff00ff]/38 blur-[9px]"
+              className="cyberpunk-glow-4 w-5 h-5 rounded-full bg-cyber-magenta/38 blur-[9px]"
               style={{
                 boxShadow:
                   "0 0 18px rgba(255,0,255,0.28), 0 0 35px rgba(255,0,255,0.14)",
               }}
             />
-            <div className="cyberpunk-glow-4 absolute w-12 h-12 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-[#ff00ff]/07 blur-[22px]" />
+            <div className="cyberpunk-glow-4 absolute w-12 h-12 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-cyber-magenta/07 blur-[22px]" />
           </div>
 
           {/* マゼンタ系 - パーティクル5 */}
           <div className="cyberpunk-float-5 absolute pointer-events-none z-20">
             <div
-              className="cyberpunk-glow-1 w-4 h-4 rounded-full bg-[#ff00ff]/32 blur-[7px]"
+              className="cyberpunk-glow-1 w-4 h-4 rounded-full bg-cyber-magenta/32 blur-[7px]"
               style={{
                 boxShadow:
                   "0 0 14px rgba(255,0,255,0.22), 0 0 28px rgba(255,0,255,0.11)",
               }}
             />
-            <div className="cyberpunk-glow-1 absolute w-10 h-10 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-[#ff00ff]/05 blur-[18px]" />
+            <div className="cyberpunk-glow-1 absolute w-10 h-10 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-cyber-magenta/05 blur-[18px]" />
           </div>
 
           {/* マゼンタ系 - パーティクル6 */}
           <div className="cyberpunk-float-6 absolute pointer-events-none z-20">
             <div
-              className="cyberpunk-glow-3 w-3 h-3 rounded-full bg-[#ff00ff]/28 blur-[6px]"
+              className="cyberpunk-glow-3 w-3 h-3 rounded-full bg-cyber-magenta/28 blur-[6px]"
               style={{
                 boxShadow:
                   "0 0 10px rgba(255,0,255,0.18), 0 0 22px rgba(255,0,255,0.09)",
               }}
             />
-            <div className="cyberpunk-glow-3 absolute w-8 h-8 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-[#ff00ff]/04 blur-[15px]" />
+            <div className="cyberpunk-glow-3 absolute w-8 h-8 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-cyber-magenta/04 blur-[15px]" />
           </div>
 
           {/* グラデーションボーダー効果（エラー時は赤系） */}
           <div
-            className="absolute inset-0 bg-gradient-to-br from-[#ff0044]/20 via-transparent to-[#ff00ff]/20"
+            className="absolute inset-0 bg-linear-to-br from-cyber-red/20 via-transparent to-cyber-magenta/20"
             style={{
               clipPath:
                 "polygon(20px 0%, calc(100% - 20px) 0%, 100% 20px, 100% calc(100% - 20px), calc(100% - 20px) 100%, 20px 100%, 0% calc(100% - 20px), 0% 20px)",
@@ -179,41 +179,41 @@ export default function PasswordResetConfirmPage({
           />
 
           {/* 上部ボーダーライン（エラー時は赤） */}
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff0044] to-transparent" />
+          <div className="absolute top-0 left-0 right-0 h-0.5 bg-linear-to-r from-transparent via-cyber-red to-transparent" />
 
           {/* 左上コーナーブラケット */}
           <div className="absolute top-4 left-4">
-            <div className="w-6 h-6 border-t-2 border-l-2 border-[#ff0044]" />
+            <div className="w-6 h-6 border-t-2 border-l-2 border-cyber-red" />
           </div>
 
           {/* 右上コーナーブラケット */}
           <div className="absolute top-4 right-4">
-            <div className="w-6 h-6 border-t-2 border-r-2 border-[#ff0044]" />
+            <div className="w-6 h-6 border-t-2 border-r-2 border-cyber-red" />
           </div>
 
           {/* 右上識別子 */}
           <div className="absolute top-6 right-12 flex items-center gap-2">
-            <span className="text-[#ff0044] text-[10px] font-mono tracking-widest">
+            <span className="text-cyber-red text-[10px] font-mono tracking-widest">
               ERROR
             </span>
-            <div className="w-1.5 h-1.5 rounded-full bg-[#ff0044] animate-pulse" />
+            <div className="w-1.5 h-1.5 rounded-full bg-cyber-red animate-pulse" />
           </div>
 
           {/* 左下コーナーブラケット */}
           <div className="absolute bottom-4 left-4">
-            <div className="w-6 h-6 border-b-2 border-l-2 border-[#ff00ff]" />
+            <div className="w-6 h-6 border-b-2 border-l-2 border-cyber-magenta" />
           </div>
 
           {/* 右下コーナーブラケット */}
           <div className="absolute bottom-4 right-4">
-            <div className="w-6 h-6 border-b-2 border-r-2 border-[#ff00ff]" />
+            <div className="w-6 h-6 border-b-2 border-r-2 border-cyber-magenta" />
           </div>
 
           {/* メインコンテンツ */}
           <div className="relative p-8 pt-12">
             {/* ヘッダー */}
             <header className="text-center mb-8">
-              <h1 className="text-2xl font-mono font-bold tracking-wider text-[#ff0044] uppercase">
+              <h1 className="text-2xl font-mono font-bold tracking-wider text-cyber-red uppercase">
                 ERROR
               </h1>
             </header>
@@ -222,11 +222,11 @@ export default function PasswordResetConfirmPage({
             <div
               className="
                 relative mb-6 p-4 text-sm font-mono
-                border-l-4 border-[#ff0044] bg-[#ff0044]/10 text-[#ff0044]
+                border-l-4 border-cyber-red bg-cyber-red/10 text-cyber-red
               "
             >
               <div className="absolute top-4 right-4">
-                <div className="w-2 h-2 rounded-full bg-[#ff0044] animate-pulse" />
+                <div className="w-2 h-2 rounded-full bg-cyber-red animate-pulse" />
               </div>
               <span className="text-[10px] uppercase tracking-widest block mb-1">
                 INVALID TOKEN
@@ -240,13 +240,13 @@ export default function PasswordResetConfirmPage({
               className="
                 relative
                 block w-full text-center
-                bg-[#ff00ff]/10
-                border border-[#ff00ff]
-                text-[#ff00ff]
+                bg-cyber-magenta/10
+                border border-cyber-magenta
+                text-cyber-magenta
                 px-6 py-3
                 font-mono text-sm uppercase tracking-wider
                 transition-all duration-200
-                hover:bg-[#ff00ff] hover:text-[#0a0a12]
+                hover:bg-cyber-magenta hover:text-cyber-surface
                 hover:shadow-[0_0_20px_rgba(255,0,255,0.5)]
               "
               style={{
@@ -262,8 +262,8 @@ export default function PasswordResetConfirmPage({
               <Link
                 to="/login"
                 className="
-                  text-sm font-mono text-[#606080]
-                  hover:text-[#00f0ff]
+                  text-sm font-mono text-cyber-text-dim
+                  hover:text-cyber-cyan
                   transition-colors
                 "
               >
@@ -273,23 +273,23 @@ export default function PasswordResetConfirmPage({
           </div>
 
           {/* 下部ボーダーライン */}
-          <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#ff00ff] via-transparent to-[#ff0044]" />
+          <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-linear-to-r from-cyber-magenta via-transparent to-cyber-red" />
         </div>
 
         {/* フッター識別子 */}
         <div className="mt-8 flex items-center gap-3 relative z-10">
           <div className="flex gap-1">
-            <div className="w-3 h-1 rounded-full bg-[#ff0044] animate-pulse" />
-            <div className="w-2 h-1 rounded-full bg-[#ff0044]/50" />
-            <div className="w-1 h-1 rounded-full bg-[#ff0044]/30" />
+            <div className="w-3 h-1 rounded-full bg-cyber-red animate-pulse" />
+            <div className="w-2 h-1 rounded-full bg-cyber-red/50" />
+            <div className="w-1 h-1 rounded-full bg-cyber-red/30" />
           </div>
-          <span className="text-[10px] font-mono text-[#606080] tracking-widest">
+          <span className="text-[10px] font-mono text-cyber-text-dim tracking-widest">
             HOME.MGMT.SYS v2.0
           </span>
           <div className="flex gap-1">
-            <div className="w-1 h-1 rounded-full bg-[#ff00ff]/30" />
-            <div className="w-2 h-1 rounded-full bg-[#ff00ff]/50" />
-            <div className="w-3 h-1 rounded-full bg-[#ff00ff] animate-pulse" />
+            <div className="w-1 h-1 rounded-full bg-cyber-magenta/30" />
+            <div className="w-2 h-1 rounded-full bg-cyber-magenta/50" />
+            <div className="w-3 h-1 rounded-full bg-cyber-magenta animate-pulse" />
           </div>
         </div>
       </div>
@@ -309,21 +309,21 @@ export default function PasswordResetConfirmPage({
       <div className="absolute inset-0 pointer-events-none">
         {/* シアン系ライト */}
         <div
-          className="absolute w-32 h-32 rounded-full bg-[#00f0ff] blur-[80px] cyberpunk-flicker-1"
+          className="absolute w-32 h-32 rounded-full bg-cyber-cyan blur-[80px] cyberpunk-flicker-1"
           style={{ top: "10%", left: "15%" }}
         />
         <div
-          className="absolute w-24 h-24 rounded-full bg-[#00f0ff] blur-[60px] cyberpunk-flicker-2"
+          className="absolute w-24 h-24 rounded-full bg-cyber-cyan blur-[60px] cyberpunk-flicker-2"
           style={{ top: "60%", right: "10%" }}
         />
 
         {/* マゼンタ系ライト */}
         <div
-          className="absolute w-28 h-28 rounded-full bg-[#ff00ff] blur-[70px] cyberpunk-flicker-3"
+          className="absolute w-28 h-28 rounded-full bg-cyber-magenta blur-[70px] cyberpunk-flicker-3"
           style={{ top: "25%", right: "20%" }}
         />
         <div
-          className="absolute w-20 h-20 rounded-full bg-[#ff00ff] blur-[50px] cyberpunk-flicker-5"
+          className="absolute w-20 h-20 rounded-full bg-cyber-magenta blur-[50px] cyberpunk-flicker-5"
           style={{ bottom: "30%", left: "15%" }}
         />
       </div>
@@ -336,7 +336,7 @@ export default function PasswordResetConfirmPage({
         className="
           relative
           w-full max-w-md
-          bg-[#10101a]
+          bg-cyber-surface
           overflow-hidden
         "
         style={{
@@ -349,78 +349,78 @@ export default function PasswordResetConfirmPage({
         {/* シアン系 - パーティクル1 */}
         <div className="cyberpunk-float-1 absolute pointer-events-none z-20">
           <div
-            className="cyberpunk-glow-1 w-6 h-6 rounded-full bg-[#00f0ff]/40 blur-[10px]"
+            className="cyberpunk-glow-1 w-6 h-6 rounded-full bg-cyber-cyan/40 blur-[10px]"
             style={{
               boxShadow:
                 "0 0 20px rgba(0,240,255,0.3), 0 0 40px rgba(0,240,255,0.15)",
             }}
           />
-          <div className="cyberpunk-glow-1 absolute w-14 h-14 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-[#00f0ff]/08 blur-[25px]" />
+          <div className="cyberpunk-glow-1 absolute w-14 h-14 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-cyber-cyan/08 blur-[25px]" />
         </div>
 
         {/* シアン系 - パーティクル2 */}
         <div className="cyberpunk-float-2 absolute pointer-events-none z-20">
           <div
-            className="cyberpunk-glow-3 w-5 h-5 rounded-full bg-[#00f0ff]/35 blur-[8px]"
+            className="cyberpunk-glow-3 w-5 h-5 rounded-full bg-cyber-cyan/35 blur"
             style={{
               boxShadow:
                 "0 0 15px rgba(0,240,255,0.25), 0 0 30px rgba(0,240,255,0.12)",
             }}
           />
-          <div className="cyberpunk-glow-3 absolute w-12 h-12 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-[#00f0ff]/06 blur-[20px]" />
+          <div className="cyberpunk-glow-3 absolute w-12 h-12 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-cyber-cyan/06 blur-[20px]" />
         </div>
 
         {/* シアン系 - パーティクル3 */}
         <div className="cyberpunk-float-3 absolute pointer-events-none z-20">
           <div
-            className="cyberpunk-glow-2 w-4 h-4 rounded-full bg-[#00f0ff]/30 blur-[7px]"
+            className="cyberpunk-glow-2 w-4 h-4 rounded-full bg-cyber-cyan/30 blur-[7px]"
             style={{
               boxShadow:
                 "0 0 12px rgba(0,240,255,0.2), 0 0 25px rgba(0,240,255,0.1)",
             }}
           />
-          <div className="cyberpunk-glow-2 absolute w-10 h-10 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-[#00f0ff]/05 blur-[18px]" />
+          <div className="cyberpunk-glow-2 absolute w-10 h-10 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-cyber-cyan/05 blur-[18px]" />
         </div>
 
         {/* マゼンタ系 - パーティクル4 */}
         <div className="cyberpunk-float-4 absolute pointer-events-none z-20">
           <div
-            className="cyberpunk-glow-4 w-5 h-5 rounded-full bg-[#ff00ff]/38 blur-[9px]"
+            className="cyberpunk-glow-4 w-5 h-5 rounded-full bg-cyber-magenta/38 blur-[9px]"
             style={{
               boxShadow:
                 "0 0 18px rgba(255,0,255,0.28), 0 0 35px rgba(255,0,255,0.14)",
             }}
           />
-          <div className="cyberpunk-glow-4 absolute w-12 h-12 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-[#ff00ff]/07 blur-[22px]" />
+          <div className="cyberpunk-glow-4 absolute w-12 h-12 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-cyber-magenta/07 blur-[22px]" />
         </div>
 
         {/* マゼンタ系 - パーティクル5 */}
         <div className="cyberpunk-float-5 absolute pointer-events-none z-20">
           <div
-            className="cyberpunk-glow-1 w-4 h-4 rounded-full bg-[#ff00ff]/32 blur-[7px]"
+            className="cyberpunk-glow-1 w-4 h-4 rounded-full bg-cyber-magenta/32 blur-[7px]"
             style={{
               boxShadow:
                 "0 0 14px rgba(255,0,255,0.22), 0 0 28px rgba(255,0,255,0.11)",
             }}
           />
-          <div className="cyberpunk-glow-1 absolute w-10 h-10 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-[#ff00ff]/05 blur-[18px]" />
+          <div className="cyberpunk-glow-1 absolute w-10 h-10 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-cyber-magenta/05 blur-[18px]" />
         </div>
 
         {/* マゼンタ系 - パーティクル6 */}
         <div className="cyberpunk-float-6 absolute pointer-events-none z-20">
           <div
-            className="cyberpunk-glow-3 w-3 h-3 rounded-full bg-[#ff00ff]/28 blur-[6px]"
+            className="cyberpunk-glow-3 w-3 h-3 rounded-full bg-cyber-magenta/28 blur-[6px]"
             style={{
               boxShadow:
                 "0 0 10px rgba(255,0,255,0.18), 0 0 22px rgba(255,0,255,0.09)",
             }}
           />
-          <div className="cyberpunk-glow-3 absolute w-8 h-8 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-[#ff00ff]/04 blur-[15px]" />
+          <div className="cyberpunk-glow-3 absolute w-8 h-8 -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2 rounded-full bg-cyber-magenta/04 blur-[15px]" />
         </div>
 
         {/* グラデーションボーダー効果 */}
         <div
-          className="absolute inset-0 bg-gradient-to-br from-[#00f0ff]/20 via-transparent to-[#ff00ff]/20"
+          className="absolute inset-0 bg-linear-to-br from-cyber-cyan/20 via-transparent to-cyber-magenta/20"
           style={{
             clipPath:
               "polygon(20px 0%, calc(100% - 20px) 0%, 100% 20px, 100% calc(100% - 20px), calc(100% - 20px) 100%, 20px 100%, 0% calc(100% - 20px), 0% 20px)",
@@ -428,29 +428,29 @@ export default function PasswordResetConfirmPage({
         />
 
         {/* 上部ボーダーライン */}
-        <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#00f0ff] to-transparent" />
+        <div className="absolute top-0 left-0 right-0 h-0.5 bg-linear-to-r from-transparent via-cyber-cyan to-transparent" />
 
         {/* 左上コーナーブラケット + 回路ライン */}
         <div className="absolute top-4 left-4">
-          <div className="w-6 h-6 border-t-2 border-l-2 border-[#00f0ff]" />
-          <div className="absolute top-0 left-6 w-12 h-[2px] bg-gradient-to-r from-[#00f0ff] to-transparent" />
-          <div className="absolute top-[-3px] left-[72px] w-2 h-2 rounded-full bg-[#00f0ff] shadow-[0_0_10px_rgba(0,240,255,0.6)] animate-pulse" />
+          <div className="w-6 h-6 border-t-2 border-l-2 border-cyber-cyan" />
+          <div className="absolute top-0 left-6 w-12 h-0.5 bg-linear-to-r from-cyber-cyan to-transparent" />
+          <div className="absolute top-[-3px] left-[72px] w-2 h-2 rounded-full bg-cyber-cyan shadow-[0_0_10px_rgba(0,240,255,0.6)] animate-pulse" />
         </div>
 
         {/* 右上コーナーブラケット */}
         <div className="absolute top-4 right-4">
-          <div className="w-6 h-6 border-t-2 border-r-2 border-[#00f0ff]" />
+          <div className="w-6 h-6 border-t-2 border-r-2 border-cyber-cyan" />
         </div>
 
         {/* 右上識別子 */}
         <div className="absolute top-6 right-12 flex items-center gap-2">
-          <span className="text-[#606080] text-[10px] font-mono tracking-widest">
+          <span className="text-cyber-text-dim text-[10px] font-mono tracking-widest">
             NEW-PW
           </span>
           <div className="flex gap-0.5">
-            <div className="w-1.5 h-1.5 rounded-full bg-[#00f0ff] animate-pulse" />
+            <div className="w-1.5 h-1.5 rounded-full bg-cyber-cyan animate-pulse" />
             <div
-              className="w-1.5 h-1.5 rounded-full bg-[#00f0ff]/40"
+              className="w-1.5 h-1.5 rounded-full bg-cyber-cyan/40"
               style={{ animationDelay: "0.2s" }}
             />
           </div>
@@ -458,24 +458,24 @@ export default function PasswordResetConfirmPage({
 
         {/* 左下コーナーブラケット */}
         <div className="absolute bottom-4 left-4">
-          <div className="w-6 h-6 border-b-2 border-l-2 border-[#ff00ff]" />
+          <div className="w-6 h-6 border-b-2 border-l-2 border-cyber-magenta" />
         </div>
 
         {/* 右下コーナーブラケット + 回路ライン */}
         <div className="absolute bottom-4 right-4">
-          <div className="w-6 h-6 border-b-2 border-r-2 border-[#ff00ff]" />
-          <div className="absolute bottom-0 right-6 w-16 h-[2px] bg-gradient-to-l from-[#ff00ff] to-transparent" />
-          <div className="absolute bottom-[-3px] right-[88px] w-2 h-2 rounded-full bg-[#ff00ff] shadow-[0_0_10px_rgba(255,0,255,0.6)] animate-pulse" />
+          <div className="w-6 h-6 border-b-2 border-r-2 border-cyber-magenta" />
+          <div className="absolute bottom-0 right-6 w-16 h-0.5 bg-linear-to-l from-cyber-magenta to-transparent" />
+          <div className="absolute bottom-[-3px] right-[88px] w-2 h-2 rounded-full bg-cyber-magenta shadow-[0_0_10px_rgba(255,0,255,0.6)] animate-pulse" />
         </div>
 
         {/* メインコンテンツ */}
         <div className="relative p-8 pt-12">
           {/* ヘッダー */}
           <header className="text-center mb-8">
-            <h1 className="text-2xl font-mono font-bold tracking-wider text-[#00f0ff] uppercase">
+            <h1 className="text-2xl font-mono font-bold tracking-wider text-cyber-cyan uppercase">
               SET NEW PASSWORD
             </h1>
-            <p className="mt-2 text-sm text-[#606080] font-mono tracking-wide">
+            <p className="mt-2 text-sm text-cyber-text-dim font-mono tracking-wide">
               {loaderData.data.email}
             </p>
           </header>
@@ -485,11 +485,11 @@ export default function PasswordResetConfirmPage({
             <div
               className="
                 relative mb-6 p-4 text-sm font-mono
-                border-l-4 border-[#ff0044] bg-[#ff0044]/10 text-[#ff0044]
+                border-l-4 border-cyber-red bg-cyber-red/10 text-cyber-red
               "
             >
               <div className="absolute top-4 right-4">
-                <div className="w-2 h-2 rounded-full bg-[#ff0044] animate-pulse" />
+                <div className="w-2 h-2 rounded-full bg-cyber-red animate-pulse" />
               </div>
               <span className="text-[10px] uppercase tracking-widest block mb-1">
                 ERROR
@@ -506,8 +506,8 @@ export default function PasswordResetConfirmPage({
             <Link
               to="/login"
               className="
-                text-sm font-mono text-[#606080]
-                hover:text-[#00f0ff]
+                text-sm font-mono text-cyber-text-dim
+                hover:text-cyber-cyan
                 transition-colors
               "
             >
@@ -517,23 +517,23 @@ export default function PasswordResetConfirmPage({
         </div>
 
         {/* 下部ボーダーライン */}
-        <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#ff00ff] via-transparent to-[#00f0ff]" />
+        <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-linear-to-r from-cyber-magenta via-transparent to-cyber-cyan" />
       </div>
 
       {/* フッター識別子 */}
       <div className="mt-8 flex items-center gap-3 relative z-10">
         <div className="flex gap-1">
-          <div className="w-3 h-1 rounded-full bg-[#00f0ff] animate-pulse" />
-          <div className="w-2 h-1 rounded-full bg-[#00f0ff]/50" />
-          <div className="w-1 h-1 rounded-full bg-[#00f0ff]/30" />
+          <div className="w-3 h-1 rounded-full bg-cyber-cyan animate-pulse" />
+          <div className="w-2 h-1 rounded-full bg-cyber-cyan/50" />
+          <div className="w-1 h-1 rounded-full bg-cyber-cyan/30" />
         </div>
-        <span className="text-[10px] font-mono text-[#606080] tracking-widest">
+        <span className="text-[10px] font-mono text-cyber-text-dim tracking-widest">
           HOME.MGMT.SYS v2.0
         </span>
         <div className="flex gap-1">
-          <div className="w-1 h-1 rounded-full bg-[#ff00ff]/30" />
-          <div className="w-2 h-1 rounded-full bg-[#ff00ff]/50" />
-          <div className="w-3 h-1 rounded-full bg-[#ff00ff] animate-pulse" />
+          <div className="w-1 h-1 rounded-full bg-cyber-magenta/30" />
+          <div className="w-2 h-1 rounded-full bg-cyber-magenta/50" />
+          <div className="w-3 h-1 rounded-full bg-cyber-magenta animate-pulse" />
         </div>
       </div>
     </div>

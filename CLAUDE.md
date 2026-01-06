@@ -36,16 +36,16 @@
 
 ## 実装ルール
 
-- レイヤー依存関係: `.claude/rules/01-layer-dependencies-ssr.md`
-- server: `.claude/rules/02-server-ssr.md`
-- services: `.claude/rules/03-services-ssr.md`
-- schema: `.claude/rules/04-schema-ssr.md`
-- zod バリデーション: `.claude/rules/05-zod-validation-ssr.md`
-- React Router バリデーション: `.claude/rules/06-react-router-validation-ssr.md`
-- コンポーネント再利用: `.claude/rules/common/component-reuse.md`
-- アイコン: `.claude/rules/common/icon-usage.md`
-- import 整理: `.claude/rules/common/import-order.md`
-- Web 標準: `.claude/rules/common/web-standards.md`
+- レイヤー依存関係: `.claude/rules/layer-dependencies.md`
+- service: `.claude/rules/service.md`
+- repository: `.claude/rules/repository.md`
+- schema: `.claude/rules/schema.md`
+- zod バリデーション: `.claude/rules/zod-validation.md`
+- React Router バリデーション: `.claude/rules/react-router-validation.md`
+- コンポーネント再利用: `.claude/rules/component-reuse.md`
+- アイコン: `.claude/rules/icon-usage.md`
+- import 整理: `.claude/rules/import-order.md`
+- Web 標準: `.claude/rules/web-standards.md`
 - デザイン: `.claude/skills/cyberpunk-design-system/SKILL.md`
 - コメントルール: ソースコード上のコメントは日本語で記述する
 - 事実と推論を分けること

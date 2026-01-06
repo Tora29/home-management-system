@@ -1,10 +1,11 @@
 import { describe, it, expect } from "vitest";
 
-import {
-  requestResetSchema,
-  userSchema,
-  passwordResetTokenSchema,
-} from "../schema";
+// テスト対象
+import { requestResetSchema } from "../schema";
+
+// 共有スキーマ
+import { passwordResetTokenSchema } from "~/shared/schema/password-reset-token.schema";
+import { userSchema } from "~/shared/schema/user.schema";
 
 describe("requestResetSchema", () => {
   it("正常系: 有効なメールアドレスでバリデーション成功", () => {

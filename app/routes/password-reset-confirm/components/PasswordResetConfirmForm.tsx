@@ -1,10 +1,11 @@
 // React・ライブラリ
-import { useState } from "react";
 import { Form, useNavigation } from "react-router";
-import { Eye, EyeOff } from "lucide-react";
 
 // 型定義
 import type { FieldErrors } from "~/shared/types/result";
+
+// 共有コンポーネント
+import { PasswordInputField } from "~/shared/components/auth";
 
 type PasswordResetConfirmFormProps = {
   errors: FieldErrors | null;
@@ -16,84 +17,24 @@ export function PasswordResetConfirmForm({
 }: PasswordResetConfirmFormProps) {
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
-  const [showPassword, setShowPassword] = useState(false);
-  const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
 
   return (
     <Form method="post" className="space-y-6">
       {/* 新しいパスワード */}
-      <div className="space-y-2">
-        <label htmlFor="password" className="cyberpunk-label">
-          NEW PASSWORD
-        </label>
-        <div className="relative">
-          <input
-            type={showPassword ? "text" : "password"}
-            id="password"
-            name="password"
-            autoComplete="new-password"
-            placeholder="********"
-            className={`cyberpunk-input cyberpunk-input-password ${errors?.password ? "cyberpunk-input-error" : ""}`}
-          />
-          <div className="cyberpunk-input-corner" />
-          <button
-            type="button"
-            onClick={() => setShowPassword(!showPassword)}
-            className="cyberpunk-password-toggle"
-            aria-label={showPassword ? "パスワードを隠す" : "パスワードを表示"}
-          >
-            {showPassword ? (
-              <EyeOff size={18} aria-hidden="true" />
-            ) : (
-              <Eye size={18} aria-hidden="true" />
-            )}
-          </button>
-        </div>
-        {errors?.password && (
-          <p role="alert" className="cyberpunk-error-text">
-            <span className="cyberpunk-error-dot" />
-            {errors.password[0]}
-          </p>
-        )}
-      </div>
+      <PasswordInputField
+        name="password"
+        label="NEW PASSWORD"
+        autoComplete="new-password"
+        error={errors?.password?.[0]}
+      />
 
       {/* パスワード確認 */}
-      <div className="space-y-2">
-        <label htmlFor="passwordConfirm" className="cyberpunk-label">
-          CONFIRM PASSWORD
-        </label>
-        <div className="relative">
-          <input
-            type={showPasswordConfirm ? "text" : "password"}
-            id="passwordConfirm"
-            name="passwordConfirm"
-            autoComplete="new-password"
-            placeholder="********"
-            className={`cyberpunk-input cyberpunk-input-password ${errors?.passwordConfirm ? "cyberpunk-input-error" : ""}`}
-          />
-          <div className="cyberpunk-input-corner" />
-          <button
-            type="button"
-            onClick={() => setShowPasswordConfirm(!showPasswordConfirm)}
-            className="cyberpunk-password-toggle"
-            aria-label={
-              showPasswordConfirm ? "パスワードを隠す" : "パスワードを表示"
-            }
-          >
-            {showPasswordConfirm ? (
-              <EyeOff size={18} aria-hidden="true" />
-            ) : (
-              <Eye size={18} aria-hidden="true" />
-            )}
-          </button>
-        </div>
-        {errors?.passwordConfirm && (
-          <p role="alert" className="cyberpunk-error-text">
-            <span className="cyberpunk-error-dot" />
-            {errors.passwordConfirm[0]}
-          </p>
-        )}
-      </div>
+      <PasswordInputField
+        name="passwordConfirm"
+        label="CONFIRM PASSWORD"
+        autoComplete="new-password"
+        error={errors?.passwordConfirm?.[0]}
+      />
 
       {/* 送信ボタン */}
       <button
