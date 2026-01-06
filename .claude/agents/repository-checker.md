@@ -12,9 +12,9 @@ color: purple
 
 以下のルールファイルを読み込み、内容を完全に理解してからチェックを開始してください：
 
-1. `.claude/rules/01-layer-dependencies.md` - レイヤー依存関係
-2. `.claude/rules/03-repository.md` - repository ルール
-3. `.claude/rules/common/import-order.md` - import 整理
+1. `.claude/rules/layer-dependencies.md` - レイヤー依存関係
+2. `.claude/rules/repository.md` - repository ルール
+3. `.claude/rules/import-order.md` - import 整理
 
 ## チェック項目
 

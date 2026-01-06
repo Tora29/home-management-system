@@ -3,11 +3,11 @@ import { randomBytes } from "crypto";
 
 // 型定義
 import type { FieldErrors } from "~/shared/types/result";
-import {
-  passwordResetTokenSchema,
-  requestResetSchema,
-  userSchema,
-} from "../schema";
+import { requestResetSchema } from "../schema";
+
+// 共有スキーマ
+import { passwordResetTokenSchema } from "~/shared/schema/password-reset-token.schema";
+import { userSchema } from "~/shared/schema/user.schema";
 
 // リポジトリ
 import * as passwordResetTokenRepository from "../repository/password-reset-token.repository";

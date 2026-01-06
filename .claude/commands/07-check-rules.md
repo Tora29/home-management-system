@@ -15,7 +15,8 @@ AskUserQuestion ツールで「チェック対象のディレクトリを入力�
 
 選択肢:
 
-- 「ルートディレクトリ指定」: 例 `app/routes/login`
+- 「全てのファイル」：routes 配下の全てのファイル
+- 「指定したファイル」：ユーザーからの入力
 - 「最近変更したファイル」: git status から自動検出
 
 ### 2. ファイルの分類
@@ -42,34 +43,34 @@ AskUserQuestion ツールで「チェック対象のディレクトリを入力�
 
 **route-checker:**
 
-- `.claude/rules/01-layer-dependencies.md`
-- `.claude/rules/06-react-router-validation.md`
-- `.claude/rules/common/web-standards.md`
-- `.claude/rules/common/import-order.md`
+- `.claude/rules/layer-dependencies.md`
+- `.claude/rules/react-router-validation.md`
+- `.claude/rules/web-standards.md`
+- `.claude/rules/import-order.md`
 
 **service-checker:**
 
-- `.claude/rules/01-layer-dependencies.md`
-- `.claude/rules/02-service.md`
-- `.claude/rules/common/import-order.md`
+- `.claude/rules/layer-dependencies.md`
+- `.claude/rules/service.md`
+- `.claude/rules/import-order.md`
 
 **repository-checker:**
 
-- `.claude/rules/01-layer-dependencies.md`
-- `.claude/rules/03-repository.md`
-- `.claude/rules/common/import-order.md`
+- `.claude/rules/layer-dependencies.md`
+- `.claude/rules/repository.md`
+- `.claude/rules/import-order.md`
 
 **schema-checker:**
 
-- `.claude/rules/04-schema.md`
-- `.claude/rules/05-zod-validation.md`
+- `.claude/rules/schema.md`
+- `.claude/rules/zod-validation.md`
 
 **component-checker:**
 
-- `.claude/rules/common/component-reuse.md`
-- `.claude/rules/common/icon-usage.md`
-- `.claude/rules/common/web-standards.md`
-- `.claude/rules/common/import-order.md`
+- `.claude/rules/component-reuse.md`
+- `.claude/rules/icon-usage.md`
+- `.claude/rules/web-standards.md`
+- `.claude/rules/import-order.md`
 
 ### 4. チェック実行
 

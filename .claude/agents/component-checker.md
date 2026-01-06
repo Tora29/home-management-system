@@ -14,10 +14,10 @@ React コンポーネントが、プロジェクトのルールに従ってい�
 
 以下のルールファイルを読み込み、内容を完全に理解してからチェックを開始してください：
 
-1. `.claude/rules/common/component-reuse.md` - コンポーネント再利用
-2. `.claude/rules/common/icon-usage.md` - アイコン使用
-3. `.claude/rules/common/web-standards.md` - Web 標準
-4. `.claude/rules/common/import-order.md` - import 整理
+1. `.claude/rules/component-reuse.md` - コンポーネント再利用
+2. `.claude/rules/icon-usage.md` - アイコン使用
+3. `.claude/rules/web-standards.md` - Web 標準
+4. `.claude/rules/import-order.md` - import 整理
 
 ## チェック項目
 

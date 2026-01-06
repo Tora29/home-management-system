@@ -3,7 +3,10 @@ import { z } from "zod";
 
 // 型定義
 import type { FieldErrors } from "~/shared/types/result";
-import { registerSchema, userSchema } from "../schema";
+import { registerSchema } from "../schema";
+
+// 共有スキーマ
+import { userSchema } from "~/shared/schema/user.schema";
 
 // ローカルリポジトリ
 import * as userRepository from "../repository/user.repository";

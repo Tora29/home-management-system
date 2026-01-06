@@ -12,10 +12,10 @@ React Router v7 のルートファイルが、プロジェクトのルールに�
 
 以下のルールファイルを読み込み、内容を完全に理解してからチェックを開始してください：
 
-1. `.claude/rules/01-layer-dependencies.md` - レイヤー依存関係
-2. `.claude/rules/06-react-router-validation.md` - React Router バリデーション
-3. `.claude/rules/common/web-standards.md` - Web 標準（useState vs searchParams）
-4. `.claude/rules/common/import-order.md` - import 整理
+1. `.claude/rules/layer-dependencies.md` - レイヤー依存関係
+2. `.claude/rules/react-router-validation.md` - React Router バリデーション
+3. `.claude/rules/web-standards.md` - Web 標準（useState vs searchParams）
+4. `.claude/rules/import-order.md` - import 整理
 
 ## チェック項目
 

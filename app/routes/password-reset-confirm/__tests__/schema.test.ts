@@ -2,11 +2,13 @@
 import { describe, it, expect } from "vitest";
 
 // テスト対象
+import { resetPasswordSchema } from "../schema";
+
+// 共有スキーマ
 import {
-  resetPasswordSchema,
   passwordResetTokenSchema,
   passwordResetTokenWithUserSchema,
-} from "../schema";
+} from "~/shared/schema/password-reset-token.schema";
 
 // エラーメッセージ
 import { AUTH_ERROR_MESSAGES } from "~/shared/errorMessage/auth";

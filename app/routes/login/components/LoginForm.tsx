@@ -1,10 +1,11 @@
 // React・ライブラリ
-import { useState } from "react";
 import { Form, useNavigation } from "react-router";
-import { Eye, EyeOff } from "lucide-react";
 
 // 型定義
 import type { FieldErrors } from "~/shared/types/result";
+
+// 共有コンポーネント
+import { PasswordInputField } from "~/shared/components/auth";
 
 type LoginFormProps = {
   errors: FieldErrors | null;
@@ -14,7 +15,6 @@ type LoginFormProps = {
 export function LoginForm({ errors }: LoginFormProps) {
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
-  const [showPassword, setShowPassword] = useState(false);
 
   return (
     <Form method="post" className="space-y-6">
@@ -43,40 +43,12 @@ export function LoginForm({ errors }: LoginFormProps) {
       </div>
 
       {/* パスワード */}
-      <div className="space-y-2">
-        <label htmlFor="password" className="cyberpunk-label">
-          PASSWORD
-        </label>
-        <div className="relative">
-          <input
-            type={showPassword ? "text" : "password"}
-            id="password"
-            name="password"
-            autoComplete="current-password"
-            placeholder="********"
-            className={`cyberpunk-input cyberpunk-input-password ${errors?.password ? "cyberpunk-input-error" : ""}`}
-          />
-          <div className="cyberpunk-input-corner" />
-          <button
-            type="button"
-            onClick={() => setShowPassword(!showPassword)}
-            className="cyberpunk-password-toggle"
-            aria-label={showPassword ? "パスワードを隠す" : "パスワードを表示"}
-          >
-            {showPassword ? (
-              <EyeOff size={18} aria-hidden="true" />
-            ) : (
-              <Eye size={18} aria-hidden="true" />
-            )}
-          </button>
-        </div>
-        {errors?.password && (
-          <p role="alert" className="cyberpunk-error-text">
-            <span className="cyberpunk-error-dot" />
-            {errors.password[0]}
-          </p>
-        )}
-      </div>
+      <PasswordInputField
+        name="password"
+        label="PASSWORD"
+        autoComplete="current-password"
+        error={errors?.password?.[0]}
+      />
 
       {/* ログインボタン */}
       <button

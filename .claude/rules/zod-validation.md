@@ -157,8 +157,6 @@ const tagsSchema = z
 
 ## エラーメッセージの書き方
 
-> 詳細は `.claude/rules/06-react-router-validation-ssr.md` の「メッセージの管理方針」を参照
-
 - フォーム検証用（ユーザー向け）: スキーマ内に日本語メッセージを直接書く
 - DB 検証用（開発者向け）: カスタムメッセージ不要（zod デフォルトで十分）
 

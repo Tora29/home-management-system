@@ -4,8 +4,6 @@ paths: "**/routes/**/route.tsx"
 
 # React Router バリデーションルール
 
-> zod の詳細な使い方は `.claude/rules/05-zod-validation-ssr.md` を参照
-
 ## 基本方針
 
 1. **バリデーションはサーバーサイド（action）で行う**

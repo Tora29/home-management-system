@@ -20,7 +20,7 @@ type PasswordInputFieldProps = {
 export function PasswordInputField({
   name,
   label,
-  placeholder = "8文字以上",
+  placeholder = "********",
   autoComplete,
   error,
   value,
@@ -30,10 +30,7 @@ export function PasswordInputField({
 
   return (
     <div className="space-y-2">
-      <label
-        htmlFor={name}
-        className="block text-sm font-medium text-hig-label"
-      >
+      <label htmlFor={name} className="cyberpunk-label">
         {label}
       </label>
       <div className="relative">
@@ -44,40 +41,26 @@ export function PasswordInputField({
           autoComplete={autoComplete}
           value={value}
           onChange={onChange}
-          className={`
-            w-full px-4 py-3 pr-12
-            bg-hig-gray6 dark:bg-hig-gray
-            text-base text-hig-label
-            placeholder:text-hig-secondary-label
-            rounded-xl
-            border-2 border-transparent
-            focus:outline-none focus:border-hig-blue
-            transition-colors
-            ${error ? "border-hig-red" : ""}
-          `}
           placeholder={placeholder}
+          className={`cyberpunk-input cyberpunk-input-password ${error ? "cyberpunk-input-error" : ""}`}
         />
+        <div className="cyberpunk-input-corner" />
         <button
           type="button"
           onClick={() => setShowPassword(!showPassword)}
-          className="
-            absolute right-3 top-1/2 -translate-y-1/2
-            p-1
-            text-hig-secondary-label
-            hover:text-hig-label
-            transition-colors
-          "
+          className="cyberpunk-password-toggle"
           aria-label={showPassword ? "パスワードを隠す" : "パスワードを表示"}
         >
           {showPassword ? (
-            <EyeOff size={20} aria-hidden="true" />
+            <EyeOff size={18} aria-hidden="true" />
           ) : (
-            <Eye size={20} aria-hidden="true" />
+            <Eye size={18} aria-hidden="true" />
           )}
         </button>
       </div>
       {error && (
-        <p role="alert" className="text-sm text-hig-red">
+        <p role="alert" className="cyberpunk-error-text">
+          <span className="cyberpunk-error-dot" />
           {error}
         </p>
       )}

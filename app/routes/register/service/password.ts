@@ -27,11 +27,11 @@ export function calculatePasswordStrength(password: string): PasswordStrength {
   const normalizedScore = Math.min(4, Math.floor(score * 0.7));
 
   const strengthMap: Record<number, { label: string; color: string }> = {
-    0: { label: "CRITICAL", color: "bg-[#ff0044]" },
-    1: { label: "WEAK", color: "bg-[#ff8800]" },
-    2: { label: "MODERATE", color: "bg-[#ffcc00]" },
-    3: { label: "STRONG", color: "bg-[#00ff66]" },
-    4: { label: "SECURE", color: "bg-[#00f0ff]" },
+    0: { label: "CRITICAL", color: "bg-cyber-red" },
+    1: { label: "WEAK", color: "bg-cyber-orange-bright" },
+    2: { label: "MODERATE", color: "bg-cyber-yellow-medium" },
+    3: { label: "STRONG", color: "bg-cyber-green" },
+    4: { label: "SECURE", color: "bg-cyber-cyan" },
   };
 
   return {
